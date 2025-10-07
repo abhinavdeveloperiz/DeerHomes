@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}About Us - DeerHomes{% endblock %}
+
+{% block content %}
+
+<!-- Banner Section -->
+<section class="relative w-full h-[30vh] bg-cover bg-center" style="background-image: url('https://www.designdemaison.in/wp-content/uploads/2024/04/Top-10-Architectural-Trends-for-Homes-in-India.jpg');">
+    <div class="absolute inset-0 bg-black/50 flex flex-col justify-center items-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-white">About Us</h1>
+        <p class="text-white mt-2">
+            <a href="/" class="hover:underline">Home</a> &gt; About
+        </p>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="py-16 px-4 bg-white">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+        <!-- Left Side - Image -->
+        <div class="w-auto">
+            <div class="h-[350px] md:h-[500px] overflow-hidden rounded-lg shadow-xl">
+                <img src="https://plus.unsplash.com/premium_photo-1689609950112-d66095626efb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aG91c2V8ZW58MHx8MHx8fDA%3D"
+                    alt="Team collaboration"
+                    class="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105">
+            </div>
+        </div>
+
+        <!-- Right Side - Content -->
+        <div>
+            <h2 class="text-4xl font-semibold text-blue mb-6">About <span class="text-yellow font-semibold">Us</span></h2>
+            <p class="text-gray-600 mb-4 text-justify leading-relaxed">
+                deerhomes® is a team of highly skilled professionals including Architects, Interior designers, and Engineers sharing
+                a deep passion for excellence, blending creativity with technical precision. We believe we can make life better for
+                our clients through design. A well-designed space enhances the quality of everyday living.
+            </p>
+            <p class="text-gray-600 mb-4 text-justify leading-relaxed">
+                By creating sustainable building modules using materials with a reduced carbon footprint, we aim to create better
+                building systems for future generations. Our versatile design philosophy ranges from contemporary minimalistic
+                designs to classical and traditional styles. Top-notch planning ensures efficiency and cost-effectiveness
+                in all major projects.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Mission & Vision Section -->
+<section class="relative w-full bg-fixed bg-center bg-cover py-20 " style="background-image: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1470&q=80');">
+    <div class="absolute inset-0 bg-black/50"></div>
+    <div class="relative max-w-6xl mx-auto text-center text-black px-4">
+        <h2 class="text-4xl font-semibold mb-6 text-white">Our Mission & Vision</h2>
+        <div class="grid md:grid-cols-2 gap-12">
+            <div class="bg-white text-black px-6 py-6 rounded-lg ">
+                <h3 class="text-2xl font-bold mb-2">Our Mission</h3>
+                <p class="leading-relaxed">
+                    To deliver sustainable, innovative, and aesthetically pleasing designs that enrich our clients’ lives and communities.
+                </p>
+            </div>
+            <div class="bg-white text-black px-6 py-6 rounded-lg">
+                <h3 class="text-2xl font-bold mb-2">Our Vision</h3>
+                <p class="leading-relaxed">
+                    To be a leading design firm recognized for creativity, integrity, and exceptional client experiences.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Values Section -->
+<section class="py-16 px-4 bg-white">
+    <div class="max-w-6xl mx-auto text-center">
+        <h2 class="text-4xl font-semibold text-blue mb-10">Our <span class="text-yellow font-semibold">Values</span></h2>
+        <div class="grid md:grid-cols-3 gap-12">
+            <div class="bg-gray-50 p-6 rounded-lg shadow hover:shadow-lg transition-shadow">
+                <i data-lucide="heart" class="w-8 h-8 text-red-500 mb-3"></i>
+                <h3 class="font-semibold text-lg mb-2">Passion</h3>
+                <p class="text-gray-600">We pour our hearts into every project, ensuring excellence.</p>
+            </div>
+            <div class="bg-gray-50 p-6 rounded-lg shadow hover:shadow-lg transition-shadow">
+                <i data-lucide="users" class="w-8 h-8 text-blue-500 mb-3"></i>
+                <h3 class="font-semibold text-lg mb-2">Teamwork</h3>
+                <p class="text-gray-600">Collaboration and mutual respect guide every endeavor.</p>
+            </div>
+            <div class="bg-gray-50 p-6 rounded-lg shadow hover:shadow-lg transition-shadow">
+                <i data-lucide="star" class="w-8 h-8 text-yellow-500 mb-3"></i>
+                <h3 class="font-semibold text-lg mb-2">Excellence</h3>
+                <p class="text-gray-600">Delivering top-quality designs with attention to detail.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Our Team Section -->
+<section class="relative w-full bg-fixed bg-center bg-cover py-20" style="background-image: url('https://images.unsplash.com/photo-1507537297725-24a1c029d3ca?auto=format&fit=crop&w=1470&q=80');">
+    <div class="absolute inset-0 bg-black/60"></div>
+    <div class="relative max-w-6xl mx-auto text-center text-white px-4">
+        <h2 class="text-4xl font-semibold mb-12">Meet Our <span class="text-yellow">Team</span></h2>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-white text-gray-900 p-6 rounded-lg shadow hover:shadow-lg transition">
+                <img src="https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671122.jpg" alt="Team Member" class="w-full h-64 object-cover rounded mb-4">
+                <h3 class="font-semibold text-xl">John Doe</h3>
+                <p class="text-gray-600">Lead Architect</p>
+            </div>
+            <div class="bg-white text-gray-900 p-6 rounded-lg shadow hover:shadow-lg transition">
+                <img src="https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671122.jpg" alt="Team Member" class="w-full h-64 object-cover rounded mb-4">
+                <h3 class="font-semibold text-xl">Jane Smith</h3>
+                <p class="text-gray-600">Interior Designer</p>
+            </div>
+            <div class="bg-white text-gray-900 p-6 rounded-lg shadow hover:shadow-lg transition">
+                <img src="https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671122.jpg" alt="Team Member" class="w-full h-64 object-cover rounded mb-4">
+                <h3 class="font-semibold text-xl">Mark Lee</h3>
+                <p class="text-gray-600">Project Engineer</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- How We Work Section -->
+<section class="mx-6 my-12 text-center">
+    <div class="mb-12">
+        <h2 class="text-3xl md:text-4xl font-semibold text-blue">How We <span class="text-yellow font-semibold">Work</span></h2>
+        <p class="text-gray-600 mt-2 max-w-2xl mx-auto">
+            We understand your vision, design with purpose, and deliver interiors that inspire.
+        </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-12 max-w-6xl mx-auto">
+        <div class="flex flex-col items-center">
+            <div class="text-gray-400 text-6xl font-bold mb-4">01</div>
+            <div class="text-green-700 text-4xl mb-4">
+                <i data-lucide="lightbulb"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">Concept</h3>
+            <p class="text-gray-600 max-w-xs text-justify">
+                We capture your vision and translate it into unique design concepts that reflect your brand.
+            </p>
+        </div>
+        <div class="flex flex-col items-center">
+            <div class="text-gray-400 text-6xl font-bold mb-4">02</div>
+            <div class="text-green-700 text-4xl mb-4">
+                <i data-lucide="pen-tool"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">Design</h3>
+            <p class="text-gray-600 max-w-xs text-justify">
+                Our team refines the concept into detailed plans, balancing aesthetics, function, and efficiency.
+            </p>
+        </div>
+        <div class="flex flex-col items-center">
+            <div class="text-gray-400 text-6xl font-bold mb-4">03</div>
+            <div class="text-green-700 text-4xl mb-4">
+                <i data-lucide="cpu"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">Development</h3>
+            <p class="text-gray-600 max-w-xs text-justify">
+                With precision execution, we bring the design to life — delivering world-class interiors on time.
+            </p>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

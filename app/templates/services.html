@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Services - DeerHomes{% endblock %}
+
+{% block content %}
+
+<!-- Banner Section -->
+<section class="relative w-full h-[30vh] bg-cover bg-center"
+    style="background-image: url('https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1470&q=80');">
+    <div class="absolute inset-0 bg-black/50 flex flex-col justify-center items-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-white">Our Services</h1>
+        <p class="text-white mt-2">
+            <a href="/" class="hover:underline">Home</a> &gt; Services
+        </p>
+    </div>
+</section>
+
+<!-- Services Overview -->
+<section class="py-16 px-4 bg-white text-center">
+    <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl font-semibold text-blue mb-6">What We <span class="text-yellow">Offer</span></h2>
+        <p class="text-gray-600 mb-12 max-w-3xl mx-auto">
+            At <span class="font-semibold text-blue">deerhomes®</span>, we transform spaces through thoughtful
+            architecture and interior design.
+            Our team brings your vision to life with innovation, sustainability, and precision.
+        </p>
+
+        <div class="grid md:grid-cols-3 gap-10">
+            <div class="bg-gray-50 p-6 rounded-lg shadow hover:shadow-lg transition">
+                <i data-lucide="home" class="w-10 h-10 text-blue mx-auto mb-4"></i>
+                <h3 class="text-xl font-semibold mb-2">Architectural Design</h3>
+                <p class="text-gray-600 text-justify">
+                    From residential to commercial projects, our architects create functional and aesthetically superior
+                    designs tailored to your lifestyle.
+                </p>
+            </div>
+
+            <div class="bg-gray-50 p-6 rounded-lg shadow hover:shadow-lg transition">
+                <i data-lucide="pen-tool" class="w-10 h-10 text-yellow mx-auto mb-4"></i>
+                <h3 class="text-xl font-semibold mb-2">Interior Design</h3>
+                <p class="text-gray-600 text-justify">
+                    We craft interior spaces that reflect your personality and vision — blending creativity with comfort
+                    and elegance.
+                </p>
+            </div>
+
+            <div class="bg-gray-50 p-6 rounded-lg shadow hover:shadow-lg transition">
+                <i data-lucide="building-2" class="w-10 h-10 text-green-600 mx-auto mb-4"></i>
+                <h3 class="text-xl font-semibold mb-2">Construction</h3>
+                <p class="text-gray-600 text-justify">
+                    Our engineers ensure quality and precision in every structure, using sustainable materials and
+                    modern technology.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Design Process -->
+<section class="relative w-full bg-fixed bg-center bg-cover py-20"
+    style="background-image: url('https://housing.com/news/wp-content/uploads/2023/03/exterior-design-shutterstock_1932966368-1200x700-compressed.jpg');">
+    <div class="absolute inset-0 bg-black/50"></div>
+    <div class="relative max-w-6xl mx-auto text-center text-white px-4">
+        <h2 class="text-4xl font-semibold mb-6">Our Design Process</h2>
+        <p class="text-gray-200 mb-12 max-w-3xl mx-auto">
+            Every project begins with your vision. Here’s how we turn it into reality.
+        </p>
+        <div class="grid md:grid-cols-3 gap-10">
+            <div class="bg-white/90 text-gray-900 p-6 rounded-lg shadow">
+                <i data-lucide="search" class="w-10 h-10 text-black mx-auto mb-3"></i>
+                <h3 class="font-semibold text-xl mb-2">1. Consultation</h3>
+                <p>We understand your goals, requirements, and design preferences in detail.</p>
+            </div>
+            <div class="bg-white/90 text-gray-900 p-6 rounded-lg shadow">
+                <i data-lucide="ruler" class="w-10 h-10 text-black mx-auto mb-3"></i>
+                <h3 class="font-semibold text-xl mb-2">2. Planning & Design</h3>
+                <p>Our designers craft 2D and 3D plans for clarity, comfort, and style balance.</p>
+            </div>
+            <div class="bg-white/90 text-gray-900 p-6 rounded-lg shadow">
+                <i data-lucide="hammer" class="w-10 h-10 text-black mx-auto mb-3"></i>
+                <h3 class="font-semibold text-xl mb-2">3. Execution</h3>
+                <p>We manage the full implementation — ensuring every detail meets your expectations.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Projects Section -->
+<section class="py-16 px-4 bg-white text-center">
+    <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl font-semibold text-blue">Our <span class="text-yellow font-semibold">Projects</span>
+        </h2>
+        <p class="text-gray-600 mb-12 max-w-3xl mx-auto">
+            A glimpse into our portfolio — where design meets functionality and sustainability.
+        </p>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            {% for p in projects %}
+            <a href="" class="relative group overflow-hidden rounded-lg shadow-lg">
+                <!-- Project Image -->
+                <img src="{{ p.image1.url }}" alt="{{ p.title }}"
+                    class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+
+                <!-- Overlay -->
+                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition duration-500">
+                </div>
+
+                <!-- Text & Arrow (Bottom Left) -->
+                <div
+                    class="absolute bottom-0 left-0 p-5 translate-y-10 group-hover:translate-y-0 transition duration-500 text-left">
+                    <h3 class="text-white text-lg font-semibold mb-1">{{ p.title }}</h3>
+                    <div class="flex items-center gap-2 text-yellow">
+                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        <span class="text-sm font-medium">View Details</span>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+        <a href="/projects"
+            class=" border-2 border-black hover:bg-black hover:text-white text-black p-2 mt-12 rounded-lg flex justify-center mx-auto w-[150px]">View
+            More</a>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="relative w-full py-16 bg-gradient-to-r from-black to-black text-center text-white">
+    <div class="max-w-4xl mx-auto px-4">
+        <h2 class="text-3xl font-semibold mb-4">Let’s Build Something Beautiful Together</h2>
+        <p class="text-gray-200 mb-6">Reach out today and let our team bring your dream project to life with expertise
+            and passion.</p>
+        <a href="/contact" class="bg-yellow text-black px-6 py-3 rounded-lg font-semibold transition">Contact Us</a>
+    </div>
+</section>
+
+{% endblock %}

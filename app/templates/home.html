@@ -1,0 +1,367 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home - DeerHomes{% endblock %}
+
+{% block content %}
+
+
+<style>
+    /* Keyframe for smooth zoom in and out */
+    @keyframes zoomInOut {
+        0% {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(1.08);
+        }
+
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    /* Apply animation to carousel images */
+    #carousel .carousel-slide img {
+        animation: zoomInOut 12s ease-in-out infinite;
+        transform-origin: center;
+        will-change: transform;
+    }
+</style>
+
+<section class="relative w-full h-screen overflow-hidden">
+
+    <!-- Carousel Container -->
+    <div class="relative w-full h-full" id="carousel">
+
+        <!-- Slide 1 -->
+        <div class="carousel-slide absolute inset-0 opacity-100 transition-opacity duration-700 ease-in-out">
+            <img src="https://www.designdemaison.in/wp-content/uploads/2024/04/Top-10-Architectural-Trends-for-Homes-in-India.jpg"
+                alt="Banner 1" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/70 flex flex-col justify-center px-8 md:px-20">
+                <div class="max-w-3xl">
+                    <h1 class="text-white text-3xl md:text-5xl font-bold leading-tight mb-4">
+                        Creatabar Interior Architecture
+                    </h1>
+                    <p class="text-gray-200 text-lg md:text-xl mb-6">
+                        Designing Commercial Spaces that Reflect Your Brand and Maximize Productivity
+                    </p>
+                    <a href="{% url 'contact' %}"
+                        class="border border-white text-white px-5 py-2 md:px-6 md:py-3 hover:bg-white hover:text-black transition duration-300 w-fit">
+                        CONTACT US
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out">
+            <img src="https://www.stonelam.com/wp-content/uploads/2025/07/Best-Exterior-Design-Ideas-for-an-Indian-Home.jpg"
+                alt="Banner 2" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/70 flex flex-col justify-center px-8 md:px-20">
+                <div class="max-w-3xl">
+                    <h1 class="text-white text-3xl md:text-5xl font-bold leading-tight mb-4">
+                        Innovative Spaces by DeerHomes
+                    </h1>
+                    <p class="text-gray-200 text-lg md:text-xl mb-6">
+                        Creating Beautiful Interiors that Inspire Creativity and Comfort
+                    </p>
+                    <a href="{% url 'contact' %}"
+                        class="border border-white text-white px-5 py-2 md:px-6 md:py-3 hover:bg-white hover:text-black transition duration-300 w-fit">
+                        CONTACT US
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Carousel Dots -->
+    <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2">
+        <span class="dot w-3 h-3 rounded-full bg-white opacity-80 cursor-pointer"></span>
+        <span class="dot w-3 h-3 rounded-full bg-gray-400 opacity-50 cursor-pointer"></span>
+    </div>
+</section>
+
+<!-- Carousel Script -->
+<script>
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots = document.querySelectorAll('.dot');
+    let index = 0;
+
+    function showSlide(i) {
+        slides.forEach((slide, idx) => {
+            slide.style.opacity = idx === i ? '1' : '0';
+            dots[idx].classList.toggle('bg-white', idx === i);
+            dots[idx].classList.toggle('bg-gray-400', idx !== i);
+        });
+        index = i;
+    }
+
+    function nextSlide() {
+        index = (index + 1) % slides.length;
+        showSlide(index);
+    }
+
+    dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => showSlide(i));
+    });
+
+    setInterval(nextSlide, 5000); // auto-slide every 5s
+</script>
+
+
+
+
+
+<section class="py-16 px-4">
+    <div class="max-w-6xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <!-- Left Side - Image -->
+            <div class="order-2 md:order-1 w-auto">
+                <div class="h-[300px] md:h-[450px] lg:h-[500px] xl:h-[550px] overflow-hidden rounded-lg shadow-xl">
+                    <img src="https://i.pinimg.com/originals/90/00/89/900089f1219391fdb379ffcf68197ea2.jpg"
+                        alt="Team collaboration"
+                        class="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105">
+                </div>
+            </div>
+
+
+            <!-- Right Side - Content -->
+            <div class="order-1 md:order-2">
+                <h2 class="text-4xl font-semibold text-blue mb-6">About <span class="text-yellow font-semibold">Us</span></h2>
+                <div class="relative">
+                    <p id="aboutText"
+                        class="text-gray-600 mb-1 leading-relaxed text-justify line-clamp-5 transition-all duration-300">
+                        deerhomes® is a team of highly skilled professionals including Architects, Interior designers
+                        and Engineers sharing
+                        a deep passion for excellence, blending creativity with technical precision. We believe we can
+                        make life better for
+                        our clients through design. A well-designed space enhances the quality of everyday living. Be it
+                        a home or a
+                        commercial space, circulation patterns, and creation of a comfortable micro environment is the
+                        result of careful
+                        planning, creative thinking, and flawless execution. By creating sustainable building modules
+                        using materials with a
+                        reduced carbon footprint, we try to create a better building system for the future generations.
+                        Top-notch design and
+                        planning ensures that our projects create a better quality of life for our clients while
+                        efficiency in design is
+                        translated into cost savings in all the major projects of deerhomes. Our versatile design
+                        philosophy encompasses
+                        various architectural styles of the past to present so our portfolio ranges from a contemporary
+                        minimalistic design
+                        approach to classical renaissance styles and traditional Kerala architecture styles. Our project
+                        management team led
+                        by experienced project managers, engineers and contractors ensure that the concepts and ideas
+                        originating from the
+                        drawing table are converted into built space flawlessly within the scheduled time. Deerhomes was
+                        founded in 1999 by
+                        Deepak Somarajan, an architectural engineer from NIT Calicut, and his wife Parvathy Vijayan, a
+                        structural engineer
+                        from TKM Engineering College, who later joined the company as its director.
+                    </p>
+
+                    <!-- Read More / Less Button -->
+                    <button id="toggleBtn"
+                        class="text-blue-600 hover:underline transition-colors duration-200 focus:outline-none">
+                        Read More...
+                    </button>
+                </div>
+
+                <!-- Script -->
+                <script>
+                    const aboutText = document.getElementById("aboutText");
+                    const toggleBtn = document.getElementById("toggleBtn");
+
+                    toggleBtn.addEventListener("click", () => {
+                        aboutText.classList.toggle("line-clamp-5"); // Toggle truncation
+                        if (aboutText.classList.contains("line-clamp-5")) {
+                            toggleBtn.textContent = "Read More...";
+                        } else {
+                            toggleBtn.textContent = "Read Less";
+                        }
+                    });
+                </script>
+
+
+                <!-- Feature Highlights Section -->
+                <div class="space-y-6 mt-6">
+                    <!-- Expert Team -->
+                    <div class="flex items-start">
+                        <i data-lucide="users" class="w-6 h-6 text-blue-600 mr-3 mt-1"></i>
+                        <div>
+                            <h3 class="font-semibold text-gray-900">Expert Team</h3>
+                            <p class="text-gray-600">Skilled professionals with diverse expertise</p>
+                        </div>
+                    </div>
+
+                    <!-- Innovation First -->
+                    <div class="flex items-start">
+                        <i data-lucide="lightbulb" class="w-6 h-6 text-blue-600 mr-3 mt-1"></i>
+                        <div>
+                            <h3 class="font-semibold text-gray-900">Innovation First</h3>
+                            <p class="text-gray-600">Always staying ahead with latest technologies</p>
+                        </div>
+                    </div>
+
+                    <!-- Client Focused -->
+                    <div class="flex items-start">
+                        <i data-lucide="heart-handshake" class="w-6 h-6 text-blue-600 mr-3 mt-1"></i>
+                        <div>
+                            <h3 class="font-semibold text-gray-900">Client Focused</h3>
+                            <p class="text-gray-600">Your success is our top priority</p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<section class="relative py-20 px-6 md:px-16 text-white bg-fixed bg-center bg-cover"
+    style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80');">
+
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-black/40"></div>
+
+    <!-- Content -->
+    <div class="relative max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center z-10">
+
+        <!-- Left Section -->
+        <div class="space-y-6 text-center md:text-left">
+            <h2 class="text-4xl md:text-5xl font-semibold text-white">About Us</h2>
+            <a href="#"
+                class="inline-block border border-white text-white px-8 py-3 font-semibold tracking-wider uppercase hover:bg-white hover:text-black transition-all duration-300">
+                Read More
+            </a>
+        </div>
+
+        <!-- Right Section -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+            <!-- Card 1 -->
+            <div class="bg-white rounded-lg shadow-md p-8 text-center hover:shadow-xl transition-shadow duration-300">
+                <div class="flex justify-center mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-gray-500" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 3v1m0 16v1m8.66-11.66l-.7.7M4.34 4.34l.7.7M21 12h-1M4 12H3m15.66 7.66l-.7-.7M4.34 19.66l.7-.7M9 12a3 3 0 116 0 3 3 0 01-6 0z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-[#3a4a38] mb-3">What We Offer</h3>
+                <p class="text-gray-600 leading-relaxed">
+                    Luxury Interior Design Solutions Tailored For Offices, Retail, Hospitality, And Lifestyle Spaces.
+                </p>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="bg-white rounded-lg shadow-md p-8 text-center hover:shadow-xl transition-shadow duration-300">
+                <div class="flex justify-center mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-gray-500" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 20h9m-9-4h9m-9-4h9M3 6h9m0 4H3m0 4h9m0 4H3" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-[#3a4a38] mb-3">What We Do</h3>
+                <p class="text-gray-600 leading-relaxed">
+                    We Design And Build World-Class Interiors That Align With Your Brand, Enhance Functionality, And
+                    Create Lasting Impressions.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<section class="mx-6 my-12">
+    <!-- Section Heading -->
+    <div class="text-center mb-8">
+        <h2 class="text-3xl md:text-4xl font-semibold uppercase text-blue">Our <span class="font-semibold text-yellow">Works</span></h2>
+        <p class="text-gray-600 mt-2">A showcase of our projects and achievements</p>
+    </div>
+
+    <div class="images">
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            {% for i in image %}
+            <div class="relative overflow-hidden group ">
+                <!-- Image -->
+                <img src="{{ i.image.url }}" alt="{{ i.title }}"
+                    class="w-full h-72 md:h-80 lg:h-84 object-cover transition-transform duration-300 group-hover:scale-105">
+
+                <!-- Dark overlay with name -->
+                <div
+                    class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+                    <p class="text-white text-center px-2">{{ i.title }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+
+<section class="mx-6 my-12 text-center">
+    <!-- Heading -->
+    <div class="mb-12">
+        <h2 class="text-3xl md:text-4xl font-semi bold text-blue">How We <span class="text-yellow font-semibold">Work</span></h2>
+        <p class="text-gray-600 mt-2 max-w-2xl mx-auto">
+            We understand your vision, design with purpose, and deliver interiors that inspire.
+        </p>
+    </div>
+
+    <!-- Steps -->
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-12 mt-4">
+        <!-- Step 1 -->
+        <div class="flex flex-col items-center">
+            <div class="text-gray-400 text-6xl font-bold mb-4">01</div>
+            <div class="text-green-700 text-4xl mb-4">
+                <i data-lucide="lightbulb"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">Concept</h3>
+            <p class="text-gray-600 max-w-xs text-justify">
+                We Capture Your Vision And Translate It Into Unique Design Concepts That Reflect Your Brand.
+            </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="flex flex-col items-center">
+            <div class="text-gray-400 text-6xl font-bold mb-4">02</div>
+            <div class="text-green-700 text-4xl mb-4">
+                <i data-lucide="pen-tool"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">Design</h3>
+            <p class="text-gray-600 max-w-xs text-justify">
+                Our Team Refines The Concept Into Detailed Plans, Balancing Aesthetics, Function, And Efficiency.
+            </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="flex flex-col items-center">
+            <div class="text-gray-400 text-6xl font-bold mb-4">03</div>
+            <div class="text-green-700 text-4xl mb-4">
+                <i data-lucide="cpu"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">Development</h3>
+            <p class="text-gray-600 max-w-xs text-justify">
+                With Precision Execution, We Bring The Design To Life — Delivering World-Class Interiors On Time.
+            </p>
+        </div>
+    </div>
+</section>
+
+
+
+
+{% endblock %}

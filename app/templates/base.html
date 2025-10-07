@@ -1,0 +1,352 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}DeerHomes{% endblock %}</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            blue: '#007b9e',
+            yellow: '#fbbf24',
+            red: '#d35400',
+          }
+        },
+      },
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* Font Styles */
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 700;
+    }
+
+    h2 {
+      font-size: 2.25rem;
+      font-weight: 700;
+    }
+
+    h3 {
+      font-size: 1.875rem;
+      font-weight: 600;
+    }
+
+    h4 {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    h5 {
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+
+    h6 {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    p, span, a, li, div {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      letter-spacing: 0.01em;
+    }
+
+    /* Medium weight for links and buttons */
+    a, button {
+      font-weight: 400;
+    }
+
+    /* Navbar and menu specific */
+    nav a {
+      font-weight: 500;
+    }
+  </style>
+</head>
+
+<body class="flex flex-col min-h-screen bg-gray-50">
+
+  <!-- Navbar -->
+  <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+    <div class="backdrop-blur-md bg-white/50 ">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+          
+          <!-- Logo -->
+          <a href="{% url 'home' %}" class="flex items-center space-x-3 group">
+            <img src="{% static 'image/logo.jpg' %}" alt="DeerHomes Logo" class="h-12 w-auto transition-transform duration-300 group-hover:scale-105">
+          </a>
+
+          <!-- Desktop Navigation -->
+          <div class="hidden lg:flex items-center space-x-1">
+            <a href="{% url 'home' %}" class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue hover:bg-blue/5 rounded-lg transition-all duration-200">Home</a>
+            <a href="{% url 'about' %}" class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue hover:bg-blue/5 rounded-lg transition-all duration-200">About</a>
+            <a href="{% url 'services' %}" class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue hover:bg-blue/5 rounded-lg transition-all duration-200">Services</a>
+            <a href="{% url 'management' %}" class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue hover:bg-blue/5 rounded-lg transition-all duration-200">Management</a>
+            <a href="{% url 'projects' %}" class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue hover:bg-blue/5 rounded-lg transition-all duration-200">Projects</a>
+            <a href="{% url 'contact' %}" class="ml-2 px-6 py-2.5 text-sm font-semibold text-white bg-blue hover:bg-blue/90 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md">Contact</a>
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <button id="menu-btn" class="lg:hidden p-2 text-gray-700 hover:text-blue hover:bg-gray-100 rounded-lg transition-colors duration-200">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 opacity-0 pointer-events-none transition-opacity duration-300 lg:hidden"></div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 lg:hidden">
+    <div class="flex flex-col h-full">
+      
+      <!-- Mobile Menu Header -->
+      <div class="flex items-center justify-between p-6 border-b border-gray-200">
+        <img src="{% static 'image/logo.jpg' %}" alt="DeerHomes Logo" class="h-10 w-auto">
+        <button id="close-menu" class="p-2 text-gray-700 hover:text-blue hover:bg-gray-100 rounded-lg transition-colors duration-200">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Menu Links -->
+      <nav class="flex-1 overflow-y-auto py-6 px-4">
+        <div class="space-y-2">
+          <a href="{% url 'home' %}" class="flex items-center px-4 py-3 text-base font-medium text-gray-700 hover:text-blue hover:bg-blue/5 rounded-lg transition-all duration-200">
+            <i data-lucide="home" class="w-5 h-5 mr-3"></i>
+            Home
+          </a>
+          <a href="{% url 'about' %}" class="flex items-center px-4 py-3 text-base font-medium text-gray-700 hover:text-blue hover:bg-blue/5 rounded-lg transition-all duration-200">
+            <i data-lucide="info" class="w-5 h-5 mr-3"></i>
+            About
+          </a>
+          <a href="{% url 'services' %}" class="flex items-center px-4 py-3 text-base font-medium text-gray-700 hover:text-blue hover:bg-blue/5 rounded-lg transition-all duration-200">
+            <i data-lucide="briefcase" class="w-5 h-5 mr-3"></i>
+            Services
+          </a>
+          <a href="{% url 'management' %}" class="flex items-center px-4 py-3 text-base font-medium text-gray-700 hover:text-blue hover:bg-blue/5 rounded-lg transition-all duration-200">
+            <i data-lucide="users" class="w-5 h-5 mr-3"></i>
+            Management
+          </a>
+          <a href="{% url 'projects' %}" class="flex items-center px-4 py-3 text-base font-medium text-gray-700 hover:text-blue hover:bg-blue/5 rounded-lg transition-all duration-200">
+            <i data-lucide="folder" class="w-5 h-5 mr-3"></i>
+            Projects
+          </a>
+        </div>
+
+        <!-- Mobile Contact Button -->
+        <div class="mt-6 px-4">
+          <a href="{% url 'contact' %}" class="flex items-center justify-center w-full px-6 py-3 text-base font-semibold text-white bg-blue hover:bg-blue/90 rounded-lg transition-all duration-200 shadow-sm">
+            <i data-lucide="mail" class="w-5 h-5 mr-2"></i>
+            Contact Us
+          </a>
+        </div>
+      </nav>
+
+      <!-- Mobile Menu Footer -->
+      <div class="p-6 border-t border-gray-200">
+        <div class="flex items-center justify-center space-x-4">
+          <a href="#" class="p-2 text-gray-600 hover:text-blue hover:bg-gray-100 rounded-lg transition-all duration-200">
+            <i data-lucide="facebook" class="w-5 h-5"></i>
+          </a>
+          <a href="#" class="p-2 text-gray-600 hover:text-blue hover:bg-gray-100 rounded-lg transition-all duration-200">
+            <i data-lucide="instagram" class="w-5 h-5"></i>
+          </a>
+          <a href="#" class="p-2 text-gray-600 hover:text-blue hover:bg-gray-100 rounded-lg transition-all duration-200">
+            <i data-lucide="linkedin" class="w-5 h-5"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Spacer for navbar -->
+  <div class="h-20"></div>
+
+  <!-- Main content -->
+  <main class="flex-grow">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-blue text-white py-12 ">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Main Footer Content -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+        
+        <!-- Company Info -->
+        <div class="space-y-4">
+          <img src="{% static 'image/logo.jpg' %}" alt="DeerHomes Logo" class="h-12 w-auto brightness-0 invert">
+          <p class="text-sm text-gray-300 leading-relaxed">Building dreams, creating homes. Your trusted partner in real estate excellence and property management.</p>
+          <div class="flex items-center space-x-3">
+            <a href="#" class="w-9 h-9 flex items-center justify-center bg-white/10 hover:bg-yellow hover:text-blue rounded-lg transition-all duration-200">
+              <i data-lucide="facebook" class="w-4 h-4"></i>
+            </a>
+            <a href="#" class="w-9 h-9 flex items-center justify-center bg-white/10 hover:bg-yellow hover:text-blue rounded-lg transition-all duration-200">
+              <i data-lucide="instagram" class="w-4 h-4"></i>
+            </a>
+            <a href="#" class="w-9 h-9 flex items-center justify-center bg-white/10 hover:bg-yellow hover:text-blue rounded-lg transition-all duration-200">
+              <i data-lucide="linkedin" class="w-4 h-4"></i>
+            </a>
+            <a href="#" class="w-9 h-9 flex items-center justify-center bg-white/10 hover:bg-yellow hover:text-blue rounded-lg transition-all duration-200">
+              <i data-lucide="twitter" class="w-4 h-4"></i>
+            </a>
+            <a href="#" class="w-9 h-9 flex items-center justify-center bg-white/10 hover:bg-yellow hover:text-blue rounded-lg transition-all duration-200">
+              <i data-lucide="youtube" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="space-y-4">
+          <h5 class="text-lg font-semibold text-yellow">Quick Links</h5>
+          <ul class="space-y-2">
+            <li><a href="{% url 'home' %}" class="text-sm text-gray-300 hover:text-yellow transition-colors duration-200 flex items-center"><i data-lucide="chevron-right" class="w-3 h-3 mr-1"></i> Home</a></li>
+            <li><a href="{% url 'about' %}" class="text-sm text-gray-300 hover:text-yellow transition-colors duration-200 flex items-center"><i data-lucide="chevron-right" class="w-3 h-3 mr-1"></i> About Us</a></li>
+            <li><a href="{% url 'services' %}" class="text-sm text-gray-300 hover:text-yellow transition-colors duration-200 flex items-center"><i data-lucide="chevron-right" class="w-3 h-3 mr-1"></i> Services</a></li>
+            <li><a href="{% url 'management' %}" class="text-sm text-gray-300 hover:text-yellow transition-colors duration-200 flex items-center"><i data-lucide="chevron-right" class="w-3 h-3 mr-1"></i> Management</a></li>
+            <li><a href="{% url 'projects' %}" class="text-sm text-gray-300 hover:text-yellow transition-colors duration-200 flex items-center"><i data-lucide="chevron-right" class="w-3 h-3 mr-1"></i> Projects</a></li>
+            <li><a href="{% url 'contact' %}" class="text-sm text-gray-300 hover:text-yellow transition-colors duration-200 flex items-center"><i data-lucide="chevron-right" class="w-3 h-3 mr-1"></i> Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Services -->
+        <div class="space-y-4">
+          <h5 class="text-lg font-semibold text-yellow">Our Services</h5>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-sm text-gray-300 hover:text-yellow transition-colors duration-200 flex items-center"><i data-lucide="chevron-right" class="w-3 h-3 mr-1"></i> Property Sales</a></li>
+            <li><a href="#" class="text-sm text-gray-300 hover:text-yellow transition-colors duration-200 flex items-center"><i data-lucide="chevron-right" class="w-3 h-3 mr-1"></i> Property Rental</a></li>
+            <li><a href="#" class="text-sm text-gray-300 hover:text-yellow transition-colors duration-200 flex items-center"><i data-lucide="chevron-right" class="w-3 h-3 mr-1"></i> Property Management</a></li>
+            <li><a href="#" class="text-sm text-gray-300 hover:text-yellow transition-colors duration-200 flex items-center"><i data-lucide="chevron-right" class="w-3 h-3 mr-1"></i> Real Estate Consulting</a></li>
+            <li><a href="#" class="text-sm text-gray-300 hover:text-yellow transition-colors duration-200 flex items-center"><i data-lucide="chevron-right" class="w-3 h-3 mr-1"></i> Investment Advisory</a></li>
+            <li><a href="#" class="text-sm text-gray-300 hover:text-yellow transition-colors duration-200 flex items-center"><i data-lucide="chevron-right" class="w-3 h-3 mr-1"></i> Legal Assistance</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="space-y-4">
+          <h5 class="text-lg font-semibold text-yellow">Contact Us</h5>
+          <ul class="space-y-3">
+            <li class="flex items-start space-x-3 text-sm text-gray-300">
+              <i data-lucide="map-pin" class="w-4 h-4 mt-1 flex-shrink-0"></i>
+              <span>123 Real Estate Avenue, Thiruvananthapuram, Kerala, India</span>
+            </li>
+            <li class="flex items-center space-x-3 text-sm text-gray-300">
+              <i data-lucide="phone" class="w-4 h-4 flex-shrink-0"></i>
+              <a href="tel:+919876543210" class="hover:text-yellow transition-colors duration-200">+91 98765 43210</a>
+            </li>
+            <li class="flex items-center space-x-3 text-sm text-gray-300">
+              <i data-lucide="mail" class="w-4 h-4 flex-shrink-0"></i>
+              <a href="mailto:info@deerhomes.com" class="hover:text-yellow transition-colors duration-200">info@deerhomes.com</a>
+            </li>
+            <li class="flex items-center space-x-3 text-sm text-gray-300">
+              <i data-lucide="clock" class="w-4 h-4 flex-shrink-0"></i>
+              <span>Mon - Sat: 9:00 AM - 6:00 PM</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="border-t border-white/20 pt-6">
+        <div class="flex flex-col md:flex-row justify-between items-center space-y-3 md:space-y-0">
+          <p class="text-sm text-gray-300">&copy; 2025 <span class="text-yellow font-semibold">DeerHomes</span>. All rights reserved.</p>
+          <div class="flex items-center space-x-6 text-sm text-gray-300">
+            <a href="#" class="hover:text-yellow transition-colors duration-200">Privacy Policy</a>
+            <span class="text-white/20">|</span>
+            <a href="#" class="hover:text-yellow transition-colors duration-200">Terms of Service</a>
+            <span class="text-white/20">|</span>
+            <a href="#" class="hover:text-yellow transition-colors duration-200">Sitemap</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    lucide.createIcons();
+
+    // Mobile Menu Elements
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileOverlay = document.getElementById('mobile-overlay');
+    const closeMenu = document.getElementById('close-menu');
+
+    // Open Mobile Menu
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.remove('translate-x-full');
+      mobileOverlay.classList.remove('opacity-0', 'pointer-events-none');
+      document.body.classList.add('overflow-hidden');
+    });
+
+    // Close Mobile Menu
+    const closeMobileMenu = () => {
+      mobileMenu.classList.add('translate-x-full');
+      mobileOverlay.classList.add('opacity-0', 'pointer-events-none');
+      document.body.classList.remove('overflow-hidden');
+    };
+
+    closeMenu.addEventListener('click', closeMobileMenu);
+    mobileOverlay.addEventListener('click', closeMobileMenu);
+
+    // Close menu when clicking on a link
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', closeMobileMenu);
+    });
+
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    let lastScroll = 0;
+
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+      
+      if (currentScroll <= 0) {
+        navbar.classList.remove('shadow-md');
+      } else {
+        navbar.classList.add('shadow-md');
+      }
+      
+      lastScroll = currentScroll;
+    });
+  </script>
+
+</body>
+
+</html>
