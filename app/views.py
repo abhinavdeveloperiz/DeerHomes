@@ -1,11 +1,13 @@
 from django.shortcuts import render
-from .models import gallery, Project
+from .models import gallery, Project,BannerHome
 # Create your views here.
 
 def home(request):
     image=gallery.objects.order_by('-id')[:8]
+    banner=BannerHome.objects.last()
     context={
-        'image':image
+        'image':image,
+        'banner':banner,
         }
     return render(request, 'home.html', context)
 

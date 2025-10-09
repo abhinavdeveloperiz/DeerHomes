@@ -41,12 +41,12 @@
 
         <!-- Slide 1 -->
         <div class="carousel-slide absolute inset-0 opacity-100 transition-opacity duration-700 ease-in-out">
-            <img src="https://www.designdemaison.in/wp-content/uploads/2024/04/Top-10-Architectural-Trends-for-Homes-in-India.jpg"
+            <img src="{{ banner.image1.url }}"
                 alt="Banner 1" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-black/70 flex flex-col justify-center px-8 md:px-20">
+            <div class="absolute inset-0 bg-black/50 flex flex-col justify-center px-8 md:px-20">
                 <div class="max-w-3xl">
                     <h1 class="text-white text-3xl md:text-5xl font-bold leading-tight mb-4">
-                        Creatabar Interior Architecture
+                        DeerHomes Interior Architecture
                     </h1>
                     <p class="text-gray-200 text-lg md:text-xl mb-6">
                         Designing Commercial Spaces that Reflect Your Brand and Maximize Productivity
@@ -61,9 +61,9 @@
 
         <!-- Slide 2 -->
         <div class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out">
-            <img src="https://www.stonelam.com/wp-content/uploads/2025/07/Best-Exterior-Design-Ideas-for-an-Indian-Home.jpg"
+            <img src="{{ banner.image2.url }}"
                 alt="Banner 2" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-black/70 flex flex-col justify-center px-8 md:px-20">
+            <div class="absolute inset-0 bg-black/50 flex flex-col justify-center px-8 md:px-20">
                 <div class="max-w-3xl">
                     <h1 class="text-white text-3xl md:text-5xl font-bold leading-tight mb-4">
                         Innovative Spaces by DeerHomes
@@ -125,7 +125,7 @@
             <!-- Left Side - Image -->
             <div class="order-2 md:order-1 w-auto" data-aos="fade-right">
                 <div class="h-[300px] md:h-[450px] lg:h-[500px] xl:h-[550px] overflow-hidden rounded-lg shadow-xl">
-                    <img src="https://i.pinimg.com/originals/90/00/89/900089f1219391fdb379ffcf68197ea2.jpg"
+                    <img src="{% static 'property/20.jpg' %}"
                         alt="Team collaboration"
                         class="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105">
                 </div>
@@ -231,7 +231,7 @@
 
 
 <section class="relative py-20 px-6 md:px-16 text-white bg-fixed bg-center bg-cover"
-    style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80');">
+    style="background-image: url('/static/property/19.jpg');">
 
     <!-- Overlay -->
     <div class="absolute inset-0 bg-black/50"></div>
@@ -248,7 +248,7 @@
                 We craft timeless interior designs that blend aesthetics and functionality, transforming spaces into
                 reflections of your lifestyle and brand identity.
             </p>
-            <a href="#"
+            <a href="/about"
                 class="inline-block border-2 border-white text-white px-8 py-3 font-semibold tracking-wider uppercase rounded-full hover:bg-white hover:text-black transition-all duration-300">
                 Read More
             </a>
@@ -276,7 +276,7 @@
                 </div>
 
                 <!-- Hover image -->
-                <img src="https://media.istockphoto.com/id/1255835530/photo/modern-custom-suburban-home-exterior.jpg?s=612x612&w=0&k=20&c=0Dqjm3NunXjZtWVpsUvNKg2A4rK2gMvJ-827nb4AMU4="
+                <img src="/static/property/13.jpg"
                     alt="What We Offer"
                     class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transform group-hover:scale-110 transition-all duration-700" />
             </div>
@@ -301,7 +301,7 @@
                 </div>
 
                 <!-- Hover image -->
-                <img src="https://thumbs.dreamstime.com/b/white-suburban-home-front-porch-10416542.jpg" alt="What We Do"
+                <img src="/static/property/27.jpg" alt="What We Do"
                     class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transform group-hover:scale-110 transition-all duration-700" />
             </div>
         </div>
