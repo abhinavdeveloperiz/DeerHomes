@@ -6,6 +6,11 @@
 
 
 <style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
     /* Keyframe for smooth zoom in and out */
     @keyframes zoomInOut {
         0% {
@@ -66,7 +71,7 @@
                     <p class="text-gray-200 text-lg md:text-xl mb-6">
                         Creating Beautiful Interiors that Inspire Creativity and Comfort
                     </p>
-                    <a href="{% url 'contact' %}"
+                    <a  href="{% url 'contact' %}"
                         class="border border-white text-white px-5 py-2 md:px-6 md:py-3 hover:bg-white hover:text-black transition duration-300 w-fit">
                         CONTACT US
                     </a>
@@ -118,7 +123,7 @@
     <div class="max-w-6xl mx-auto">
         <div class="grid md:grid-cols-2 gap-12 items-center">
             <!-- Left Side - Image -->
-            <div class="order-2 md:order-1 w-auto">
+            <div class="order-2 md:order-1 w-auto" data-aos="fade-right">
                 <div class="h-[300px] md:h-[450px] lg:h-[500px] xl:h-[550px] overflow-hidden rounded-lg shadow-xl">
                     <img src="https://i.pinimg.com/originals/90/00/89/900089f1219391fdb379ffcf68197ea2.jpg"
                         alt="Team collaboration"
@@ -128,7 +133,7 @@
 
 
             <!-- Right Side - Content -->
-            <div class="order-1 md:order-2">
+            <div class="order-1 md:order-2" data-aos="fade-left">
                 <h2 class="text-4xl font-semibold text-blue mb-6">About <span
                         class="text-yellow font-semibold">Us</span></h2>
                 <div class="relative">
@@ -215,10 +220,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
-
             </div>
         </div>
     </div>
@@ -256,7 +257,7 @@
         <!-- Right Section -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
             <!-- Card 1 -->
-            <div
+            <div data-aos="fade-right"
                 class="relative group bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer transition-all duration-500 hover:shadow-2xl">
                 <!-- Default content -->
                 <div class="p-8 text-center transition-opacity duration-500 group-hover:opacity-0">
@@ -281,7 +282,7 @@
             </div>
 
             <!-- Card 2 -->
-            <div
+            <div data-aos="fade-left"
                 class="relative group bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer transition-all duration-500 hover:shadow-2xl">
                 <!-- Default content -->
                 <div class="p-8 text-center transition-opacity duration-500 group-hover:opacity-0">
@@ -300,8 +301,7 @@
                 </div>
 
                 <!-- Hover image -->
-                <img src="https://thumbs.dreamstime.com/b/white-suburban-home-front-porch-10416542.jpg"
-                    alt="What We Do"
+                <img src="https://thumbs.dreamstime.com/b/white-suburban-home-front-porch-10416542.jpg" alt="What We Do"
                     class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transform group-hover:scale-110 transition-all duration-700" />
             </div>
         </div>
@@ -318,22 +318,67 @@
     </div>
 
     <div class="images">
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {% for i in image %}
-            <div class="relative overflow-hidden group ">
+            <div class="relative overflow-hidden group cursor-pointer" data-aos="fade-right"
+                onclick="openPopup('{{ i.image.url }}', '{{ i.title }}')">
                 <!-- Image -->
                 <img src="{{ i.image.url }}" alt="{{ i.title }}"
                     class="w-full h-72 md:h-80 lg:h-84 object-cover transition-transform duration-300 group-hover:scale-105">
 
                 <!-- Dark overlay with name -->
                 <div
-                    class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+                    class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
                     <p class="text-white text-center px-2">{{ i.title }}</p>
                 </div>
             </div>
             {% endfor %}
         </div>
     </div>
+
+    <!-- Popup Modal -->
+    <div id="imagePopup"
+        class="fixed inset-0 bg-black/90 hidden z-50 flex items-center justify-center p-4 transition-opacity duration-300">
+        <!-- Close Button -->
+        <button onclick="closePopup()"
+            class="absolute top-5 right-5 text-white text-3xl font-bold hover:text-gray-300">&times;</button>
+
+        <!-- Popup Image -->
+        <div class="max-w-5xl w-full max-h-[90vh] flex flex-col items-center justify-center">
+            <img id="popupImage" src="" alt="Full Image"
+                class="w-full h-auto max-h-[80vh] object-contain rounded-lg shadow-lg">
+            <p id="popupTitle" class="text-white mt-4 text-center text-lg"></p>
+        </div>
+    </div>
+
+    <script>
+        // Open popup
+        function openPopup(imageUrl, title) {
+            const popup = document.getElementById('imagePopup');
+            const img = document.getElementById('popupImage');
+            const caption = document.getElementById('popupTitle');
+
+            img.src = imageUrl;
+            caption.textContent = title;
+            popup.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Prevent scroll on mobile
+        }
+
+        // Close popup
+        function closePopup() {
+            const popup = document.getElementById('imagePopup');
+            popup.classList.add('hidden');
+            document.body.style.overflow = 'auto'; // Restore scroll
+        }
+
+        // Close popup on background click
+        document.getElementById('imagePopup').addEventListener('click', function (e) {
+            if (e.target === this) {
+                closePopup();
+            }
+        });
+    </script>
+
 </section>
 
 
@@ -351,7 +396,7 @@
     <!-- Steps -->
     <div class="grid grid-cols-2 md:grid-cols-3 gap-12 mt-4">
         <!-- Step 1 -->
-        <div class="flex flex-col items-center">
+        <div class="flex flex-col items-center" data-aos="fade-right">
             <div class="text-gray-400 text-6xl font-bold mb-4">01</div>
             <div class="text-green-700 text-4xl mb-4">
                 <i data-lucide="lightbulb"></i>
@@ -363,7 +408,7 @@
         </div>
 
         <!-- Step 2 -->
-        <div class="flex flex-col items-center">
+        <div class="flex flex-col items-center" data-aos="fade-up">
             <div class="text-gray-400 text-6xl font-bold mb-4">02</div>
             <div class="text-green-700 text-4xl mb-4">
                 <i data-lucide="pen-tool"></i>
@@ -375,7 +420,7 @@
         </div>
 
         <!-- Step 3 -->
-        <div class="flex flex-col items-center">
+        <div class="flex flex-col items-center" data-aos="fade-left">
             <div class="text-gray-400 text-6xl font-bold mb-4">03</div>
             <div class="text-green-700 text-4xl mb-4">
                 <i data-lucide="cpu"></i>

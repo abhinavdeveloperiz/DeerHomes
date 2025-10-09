@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ project.title }} | DeerHomes{% endblock %}
+
+{% block content %}
+
+<style>
+
+    .main-image {
+        transition: all 0.4s ease-in-out;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .thumbnail {
+        cursor: pointer;
+        border-radius: 8px;
+        overflow: hidden;
+        transition: all 0.3s ease-in-out;
+        opacity: 0.85;
+    }
+
+    .thumbnail:hover {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+
+    .thumbnail.active {
+        border: 2px solid #2563eb;
+        /* blue border */
+        opacity: 1;
+    }
+
+    /* Right Info Card */
+    .info-card {
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        padding: 2rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .main-image {
+            height: 300px;
+        }
+    }
+</style>
+
+<section class="bg-gray-50 py-16 px-4 md:px-10 lg:px-20">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-start">
+
+        <!-- LEFT SIDE - Image Gallery -->
+        <div  data-aos="fade-right">
+            <!-- Main Image -->
+            {% if project.image1 %}
+            <div class="main-image mb-4">
+                <img id="mainImage" src="{{ project.image1.url }}" alt="{{ project.title }}"
+                    class="w-full h-[400px] md:h-[500px] object-cover rounded-lg shadow-md">
+            </div>
+            {% endif %}
+
+            <!-- Thumbnail Grid -->
+            <div class="grid grid-cols-4 gap-3">
+                {% if project.image1 %}
+                <img src="{{ project.image1.url }}" class="thumbnail active w-full h-20 object-cover rounded-md"
+                    onclick="changeImage(this)">
+                {% endif %}
+                {% if project.image2 %}
+                <img src="{{ project.image2.url }}" class="thumbnail w-full h-20 object-cover rounded-md"
+                    onclick="changeImage(this)">
+                {% endif %}
+                {% if project.image3 %}
+                <img src="{{ project.image3.url }}" class="thumbnail w-full h-20 object-cover rounded-md"
+                    onclick="changeImage(this)">
+                {% endif %}
+                {% if project.image4 %}
+                <img src="{{ project.image4.url }}" class="thumbnail w-full h-20 object-cover rounded-md"
+                    onclick="changeImage(this)">
+                {% endif %}
+                {% if project.image5 %}
+                <img src="{{ project.image5.url }}" class="thumbnail w-full h-20 object-cover rounded-md"
+                    onclick="changeImage(this)">
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- RIGHT SIDE - Details -->
+        <div class="info-card p-8 bg-white rounded-2xl shadow-lg"  data-aos="fade-left">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{{ project.title }}</h1>
+
+            {% if project.type %}
+            <p class="text-blue-600 font-semibold uppercase tracking-wide mb-4">{{ project.get_type_display }}</p>
+            {% endif %}
+
+            <div class="space-y-2 text-gray-700">
+                {% if project.client_name %}
+                <p class="flex items-center gap-2">
+                    <i data-lucide="user"></i>
+                    <span><strong>Client:</strong> {{ project.client_name }}</span>
+                </p>
+                {% endif %}
+
+                {% if project.location %}
+                <p class="flex items-center gap-2">
+                    <i data-lucide="map-pin"></i>
+                    <span><strong>Location:</strong> {{ project.location }}</span>
+                </p>
+                {% endif %}
+
+                {% if project.description %}
+                <p class="text-gray-600 leading-relaxed mt-4 text-justify">
+                    {{ project.description }}
+                </p>
+                {% endif %}
+            </div>
+
+            <!-- Optional Divider -->
+            <div class="border-t mt-6 mb-4"></div>
+
+            <!-- Extra Project Info with Icons -->
+            <div class="flex flex-wrap items-center gap-6 text-sm text-gray-500">
+                <div class="flex items-center gap-2">
+                    <i data-lucide="calendar"></i>
+                    <span>Project ID: {{ project.id }}</span>
+                </div>
+
+                {% if project.type %}
+                <div class="flex items-center gap-2">
+                    <i data-lucide="layers"></i>
+                    <span>{{ project.get_type_display }}</span>
+                </div>
+                {% endif %}
+
+                <!-- Additional icons -->
+                {% if project.image1 %}
+                <div class="flex items-center gap-2">
+                    <i data-lucide="image"></i>
+                    <span>Images Available</span>
+                </div>
+                {% endif %}
+
+                <!-- Example placeholder for extra info -->
+                <div class="flex items-center gap-2">
+                    <i data-lucide="award"></i>
+                    <span>Premium Design</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i data-lucide="users"></i>
+                    <span>Expert Team</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<script>
+    // Image Switcher
+    function changeImage(el) {
+        const main = document.getElementById("mainImage");
+        const thumbnails = document.querySelectorAll(".thumbnail");
+
+        thumbnails.forEach(t => t.classList.remove("active"));
+        el.classList.add("active");
+
+        main.src = el.src;
+    }
+</script>
+
+{% endblock %}

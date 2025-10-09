@@ -12,7 +12,7 @@ urlpatterns = [
     path('management/', views.management, name='management'),
     path('projects/', views.projects, name='projects'),
     path('contact/', views.contact, name='contact'),
-    
+    path('project/<int:pk>/', views.Project_details, name='project_details'),
     
 ]
 

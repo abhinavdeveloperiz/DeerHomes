@@ -29,5 +29,12 @@ def projects(request):
     }
     return render(request, 'projects.html',context)
 
+def Project_details(request,pk):
+    project=Project.objects.get(id=pk)
+    context={
+        'project':project
+    }
+    return render(request, 'project_details.html',context)
+
 def contact(request):
     return render(request, 'contact.html')

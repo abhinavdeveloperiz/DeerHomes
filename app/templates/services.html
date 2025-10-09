@@ -26,7 +26,7 @@
         </p>
 
         <div class="grid md:grid-cols-3 gap-10">
-            <div class="bg-gray-50 p-6 rounded-lg shadow hover:shadow-lg transition">
+            <div class="bg-gray-50 p-6 rounded-lg shadow hover:shadow-lg transition" data-aos="fade-down" >
                 <i data-lucide="home" class="w-10 h-10 text-blue mx-auto mb-4"></i>
                 <h3 class="text-xl font-semibold mb-2">Architectural Design</h3>
                 <p class="text-gray-600 text-justify">
@@ -35,7 +35,7 @@
                 </p>
             </div>
 
-            <div class="bg-gray-50 p-6 rounded-lg shadow hover:shadow-lg transition">
+            <div class="bg-gray-50 p-6 rounded-lg shadow hover:shadow-lg transition" data-aos="fade-down" data-aos-delay="200">
                 <i data-lucide="pen-tool" class="w-10 h-10 text-yellow mx-auto mb-4"></i>
                 <h3 class="text-xl font-semibold mb-2">Interior Design</h3>
                 <p class="text-gray-600 text-justify">
@@ -44,7 +44,7 @@
                 </p>
             </div>
 
-            <div class="bg-gray-50 p-6 rounded-lg shadow hover:shadow-lg transition">
+            <div class="bg-gray-50 p-6 rounded-lg shadow hover:shadow-lg transition" data-aos="fade-down" data-aos-delay="400">
                 <i data-lucide="building-2" class="w-10 h-10 text-green-600 mx-auto mb-4"></i>
                 <h3 class="text-xl font-semibold mb-2">Construction</h3>
                 <p class="text-gray-600 text-justify">
@@ -66,17 +66,17 @@
             Every project begins with your vision. Here’s how we turn it into reality.
         </p>
         <div class="grid md:grid-cols-3 gap-10">
-            <div class="bg-white/90 text-gray-900 p-6 rounded-lg shadow">
+            <div class="bg-white/90 text-gray-900 p-6 rounded-lg shadow" data-aos="fade-down">
                 <i data-lucide="search" class="w-10 h-10 text-black mx-auto mb-3"></i>
                 <h3 class="font-semibold text-xl mb-2">1. Consultation</h3>
                 <p>We understand your goals, requirements, and design preferences in detail.</p>
             </div>
-            <div class="bg-white/90 text-gray-900 p-6 rounded-lg shadow">
+            <div class="bg-white/90 text-gray-900 p-6 rounded-lg shadow" data-aos="fade-down" data-aos-delay="200">
                 <i data-lucide="ruler" class="w-10 h-10 text-black mx-auto mb-3"></i>
                 <h3 class="font-semibold text-xl mb-2">2. Planning & Design</h3>
                 <p>Our designers craft 2D and 3D plans for clarity, comfort, and style balance.</p>
             </div>
-            <div class="bg-white/90 text-gray-900 p-6 rounded-lg shadow">
+            <div class="bg-white/90 text-gray-900 p-6 rounded-lg shadow" data-aos="fade-down" data-aos-delay="400">
                 <i data-lucide="hammer" class="w-10 h-10 text-black mx-auto mb-3"></i>
                 <h3 class="font-semibold text-xl mb-2">3. Execution</h3>
                 <p>We manage the full implementation — ensuring every detail meets your expectations.</p>
@@ -96,7 +96,7 @@
 
         <div class="grid md:grid-cols-3 gap-8">
             {% for p in projects %}
-            <a href="" class="relative group overflow-hidden rounded-lg shadow-lg">
+            <a href="{% url 'project_details' p.id %}" class="relative group overflow-hidden rounded-lg shadow-lg" data-aos="fade-up-right">
                 <!-- Project Image -->
                 <img src="{{ p.image1.url }}" alt="{{ p.title }}"
                     class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
