@@ -43,6 +43,6 @@ class Project(models.Model):
     image5 = models.ImageField(upload_to='projects/', blank=True, null=True)
 
     def __str__(self):
-        return f"{self.title} - {self.client_name or 'No Client'}"
+        return f"{self.title} - {self.type or 'No Type'}"
 
 
