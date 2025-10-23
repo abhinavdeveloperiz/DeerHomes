@@ -88,11 +88,13 @@
             </div>
 
             <div class="relative z-10 grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto px-4 mt-12">
-                <div class="bg-black/40 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+
+                <div class="bg-black/40 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col"
                     data-aos="fade-up" data-aos-delay="100">
-                    <i data-lucide="home" class="w-10 h-10 text-blue mb-4"></i>
+                    <i data-lucide="home" class="w-10 h-10 text-blue mb-4 animate-pulse"></i>
                     <h4 class="text-xl font-bold text-white mb-2">Residential Architecture</h4>
-                    <p class="text-white text-justify text-sm">
+                    <p
+                        class="text-white text-justify text-sm max-h-24 overflow-hidden transition-all duration-500 ease-in-out">
                         At Deerhomes, we specialize in crafting exceptional residential spaces that blend style,
                         comfort, and functionality. Our team of some of the best architects in Kollam, Kerala, bring
                         years of expertise in innovative home design, home renovation, and luxury home architecture.
@@ -103,12 +105,18 @@
                         exceptional homes making us one of the best builders in Kollam, Kerala. Discover elegant
                         designs, flawless execution, and a commitment to excellence—only at Deerhomes.
                     </p>
+                    <button
+                        class="read-more-btn text-white hover:text-blue text-sm font-semibold mt-2 self-start focus:outline-none">
+                        Read more...
+                    </button>
                 </div>
-                <div class="bg-black/40 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+
+                <div class="bg-black/40 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col"
                     data-aos="fade-up" data-aos-delay="200">
-                    <i data-lucide="building-2" class="w-10 h-10 text-yellow mb-4"></i>
+                    <i data-lucide="building-2" class="w-10 h-10 text-yellow mb-4 animate-pulse"></i>
                     <h4 class="text-xl font-bold text-white mb-2">Commercial Architecture</h4>
-                    <p class="text-white text-justify text-sm">
+                    <p
+                        class="text-white text-justify text-sm max-h-24 overflow-hidden transition-all duration-500 ease-in-out">
                         Deerhomes stands as one of the best commercial architects in Kollam, delivering cutting-edge
                         design solutions for business spaces, malls, institutions, and urban infrastructure. As
                         experienced commercial mall designers and designers of high-rise buildings in Kerala, we
@@ -118,12 +126,18 @@
                         or a multi-storey development, Deerhomes transforms ideas into architectural landmarks across
                         Kerala.
                     </p>
+                    <button
+                        class="read-more-btn text-white hover:text-blue text-sm font-semibold mt-2 self-start focus:outline-none">
+                        Read more...
+                    </button>
                 </div>
-                <div class="bg-black/40 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+
+                <div class="bg-black/40 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col"
                     data-aos="fade-up" data-aos-delay="300">
-                    <i data-lucide="hotel" class="w-10 h-10 text-green-600 mb-4"></i>
+                    <i data-lucide="hotel" class="w-10 h-10 text-green-600 mb-4 animate-pulse"></i>
                     <h4 class="text-xl font-bold text-white mb-2">Hotel Design</h4>
-                    <p class="text-white text-justify text-sm">
+                    <p
+                        class="text-white text-justify text-sm max-h-24 overflow-hidden transition-all duration-500 ease-in-out">
                         Deerhomes is a premier architecture and design firm, renowned for creating exceptional
                         hospitality spaces that blend luxury, innovation, and functionality. As luxury star hotel
                         designers and architects, we specialize in crafting stunning interiors and iconic structures
@@ -133,12 +147,18 @@
                         Kerala, Deerhomes is your trusted partner for designing unforgettable, high-end hotel
                         destinations.
                     </p>
+                    <button
+                        class="read-more-btn text-white hover:text-blue text-sm font-semibold mt-2 self-start focus:outline-none">
+                        Read more...
+                    </button>
                 </div>
-                <div class="bg-black/40 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+
+                <div class="bg-black/40 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col"
                     data-aos="fade-up" data-aos-delay="400">
-                    <i data-lucide="tree-deciduous" class="w-10 h-10 text-orange-500 mb-4"></i>
+                    <i data-lucide="tree-deciduous" class="w-10 h-10 text-orange-500 mb-4 animate-pulse"></i>
                     <h4 class="text-xl font-bold text-white mb-2">Public Spaces and Parks Design</h4>
-                    <p class="text-white text-justify text-sm">
+                    <p
+                        class="text-white text-justify text-sm max-h-24 overflow-hidden transition-all duration-500 ease-in-out">
                         Deerhomes is a leading architecture and design firm specializing in park and public space design
                         that enhances community living and urban aesthetics. We create innovative, sustainable, and
                         user-friendly outdoor environments that inspire connection and well-being. From urban parks to
@@ -147,9 +167,41 @@
                         spaces that serve people of all ages, setting us apart as a top choice for park and public space
                         design in Kerala and beyond.
                     </p>
+                    <button
+                        class="read-more-btn text-white hover:text-blue text-sm font-semibold mt-2 self-start focus:outline-none">
+                        Read more...
+                    </button>
                 </div>
             </div>
         </div>
+
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Select all read-more buttons
+                const readMoreButtons = document.querySelectorAll('.read-more-btn');
+
+                readMoreButtons.forEach(button => {
+                    button.addEventListener('click', event => {
+                        // Get the paragraph element right before the button
+                        const content = event.target.previousElementSibling;
+
+                        // Toggle the max-height classes
+                        content.classList.toggle('max-h-24');
+                        content.classList.toggle('max-h-screen'); // Use a large value
+
+                        // Change the button text
+                        if (content.classList.contains('max-h-screen')) {
+                            event.target.textContent = 'Read less';
+                        } else {
+                            event.target.textContent = 'Read more...';
+                        }
+                    });
+                });
+            });
+        </script>
+
+
 
         <div class="relative py-20 bg-cover bg-fixed bg-center rounded-lg overflow-hidden shadow-2xl mb-20"
             style="background-image: url('https://i.pinimg.com/originals/4f/02/1a/4f021a2b7a06582536201a50817514de.jpg');">
@@ -198,18 +250,18 @@
             Every project begins with your vision. Here’s how we turn it into reality.
         </p>
         <div class="grid md:grid-cols-3 gap-10">
-            <div class="bg-white/90 text-gray-900 p-6 rounded-lg shadow" data-aos="fade-down">
-                <i data-lucide="search" class="w-10 h-10 text-black mx-auto mb-3"></i>
+            <div class="bg-white/90 hover:bg-blue hover:text-white text-gray-900 p-6 rounded-lg shadow" data-aos="fade-down">
+                <i data-lucide="search" class="w-10 h-10 mx-auto mb-3"></i>
                 <h3 class="font-semibold text-xl mb-2">1. Consultation</h3>
                 <p>We understand your goals, requirements, and design preferences in detail.</p>
             </div>
-            <div class="bg-white/90 text-gray-900 p-6 rounded-lg shadow" data-aos="fade-down" data-aos-delay="200">
-                <i data-lucide="ruler" class="w-10 h-10 text-black mx-auto mb-3"></i>
+            <div class="bg-white/90 hover:bg-blue hover:text-white text-gray-900 p-6 rounded-lg shadow" data-aos="fade-down" data-aos-delay="200">
+                <i data-lucide="ruler" class="w-10 h-10 mx-auto mb-3"></i>
                 <h3 class="font-semibold text-xl mb-2">2. Planning & Design</h3>
                 <p>Our designers craft 2D and 3D plans for clarity, comfort, and style balance.</p>
             </div>
-            <div class="bg-white/90 text-gray-900 p-6 rounded-lg shadow" data-aos="fade-down" data-aos-delay="400">
-                <i data-lucide="hammer" class="w-10 h-10 text-black mx-auto mb-3"></i>
+            <div class="bg-white/90 hover:bg-blue hover:text-white text-gray-900 p-6 rounded-lg shadow" data-aos="fade-down" data-aos-delay="400">
+                <i data-lucide="hammer" class="w-10 h-10 mx-auto mb-3"></i>
                 <h3 class="font-semibold text-xl mb-2">3. Execution</h3>
                 <p>We manage the full implementation — ensuring every detail meets your expectations.</p>
             </div>
@@ -229,15 +281,19 @@
             {% for p in projects %}
             <a href="{% url 'project_details' p.id %}" class="relative group overflow-hidden rounded-lg shadow-lg"
                 data-aos="fade-up-right">
+                <!-- Project Image -->
                 <img src="{{ p.image1.url }}" alt="{{ p.title }}"
                     class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
 
+                <!-- Overlay -->
                 <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition duration-500">
                 </div>
 
+                <!-- Text & Arrow (Bottom Left) -->
                 <div
                     class="absolute bottom-0 left-0 p-5 translate-y-10 group-hover:translate-y-0 transition duration-500 text-left">
-                    <h3 class="text-white text-lg font-semibold mb-1">{{ p.title }}</h3>
+                    <h3 class="text-white text-xl font-semibold mb-1">{{ p.title }}</h3>
+                    <h3 class="text-white text-lg text-yellow font-semibold mb-4">{{ p.type }}</h3>
                     <div class="flex items-center gap-2 text-yellow">
                         <i data-lucide="arrow-right" class="w-5 h-5"></i>
                         <span class="text-sm font-medium">View Details</span>
@@ -246,9 +302,36 @@
             </a>
             {% endfor %}
         </div>
-        <a href="/projects"
-            class=" border-2 border-black hover:bg-black hover:text-white text-black p-2 mt-12 rounded-lg flex justify-center mx-auto w-[150px]">View
-            More</a>
+        <a href="/projects" class="
+     relative /* 1. Needed for positioning the fill */
+     overflow-hidden /* 2. Hides the fill when it's off-screen */
+     border-2 border-blue 
+     text-black 
+     p-2 mt-12 rounded-lg 
+     flex justify-center mx-auto w-[150px] 
+     transition-colors duration-300 ease-out /* 3. Smooths text color change */
+     hover:text-white /* 4. Changes text to white on hover */
+
+     /* 5. The fill element */
+     before:absolute 
+     before:content-[''] 
+     before:left-0 
+     before:top-0 
+     before:w-full 
+     before:h-full 
+     before:bg-blue 
+     before:transform 
+     before:-translate-x-full /* 6. Starts off-screen to the left */
+     before:transition-transform 
+     before:duration-300 
+     before:ease-in-out
+     hover:before:translate-x-0 /* 7. Slides in to fill on hover */
+   ">
+
+            <span class="relative z-10">
+                View More
+            </span>
+        </a>
     </div>
 </section>
 

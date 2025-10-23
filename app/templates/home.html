@@ -6,11 +6,13 @@
 
 
 <style>
-    body, html {
+    body,
+    html {
         margin: 0;
         padding: 0;
         overflow-x: hidden;
     }
+
     /* Keyframe for smooth zoom in and out */
     @keyframes zoomInOut {
         0% {
@@ -37,12 +39,11 @@
 <section class="relative w-full h-screen overflow-hidden">
 
     <!-- Carousel Container -->
-    <div class="relative w-full h-full" id="carousel">
+    <div class="relative w-full h-full " id="carousel">
 
         <!-- Slide 1 -->
         <div class="carousel-slide absolute inset-0 opacity-100 transition-opacity duration-700 ease-in-out">
-            <img src="{{ banner.image1.url }}"
-                alt="Banner 1" class="w-full h-full object-cover">
+            <img src="{{ banner.image1.url }}" alt="Banner 1" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-black/50 flex flex-col justify-center px-8 md:px-20">
                 <div class="max-w-3xl">
                     <h1 class="text-white text-3xl md:text-5xl font-bold leading-tight mb-4">
@@ -51,18 +52,25 @@
                     <p class="text-gray-200 text-lg md:text-xl mb-6">
                         Designing Commercial Spaces that Reflect Your Brand and Maximize Productivity
                     </p>
-                    <a href="{% url 'contact' %}"
-                        class="border border-white text-white px-5 py-2 md:px-6 md:py-3 hover:bg-white hover:text-black transition duration-300 w-fit">
-                        CONTACT US
+                    <!-- From Uiverse.io by nathAd17 -->
+                    <a href="/contact"
+                        class="flex w-52 justify-center gap-2 shadow-xl text-lg bg-gray-50 backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-blue hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-4 py-2 overflow-hidden border-2 rounded-full group">
+                        Contact Us
+                        <svg class="w-8 h-8 justify-end group-hover:rotate-90 group-hover:bg-gray-50 text-gray-50 ease-linear duration-300 rounded-full border border-gray-700 group-hover:border-none p-2 rotate-45"
+                            viewBox="0 0 16 19" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658 -0.0976311 7.68342 -0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z"
+                                class="fill-gray-800 group-hover:fill-gray-800"></path>
+                        </svg>
                     </a>
+
                 </div>
             </div>
         </div>
 
         <!-- Slide 2 -->
         <div class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out">
-            <img src="{{ banner.image2.url }}"
-                alt="Banner 2" class="w-full h-full object-cover">
+            <img src="{{ banner.image2.url }}" alt="Banner 2" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-black/50 flex flex-col justify-center px-8 md:px-20">
                 <div class="max-w-3xl">
                     <h1 class="text-white text-3xl md:text-5xl font-bold leading-tight mb-4">
@@ -71,9 +79,16 @@
                     <p class="text-gray-200 text-lg md:text-xl mb-6">
                         Creating Beautiful Interiors that Inspire Creativity and Comfort
                     </p>
-                    <a  href="{% url 'contact' %}"
-                        class="border border-white text-white px-5 py-2 md:px-6 md:py-3 hover:bg-white hover:text-black transition duration-300 w-fit">
-                        CONTACT US
+                    <!-- From Uiverse.io by nathAd17 -->
+                    <a href="/contact"
+                        class="flex w-52 justify-center gap-2 shadow-xl text-lg bg-gray-50 backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-yellow hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-4 py-2 overflow-hidden border-2 rounded-full group">
+                        Contact Us
+                        <svg class="w-8 h-8 justify-end group-hover:rotate-90 group-hover:bg-gray-50 text-gray-50 ease-linear duration-300 rounded-full border border-gray-700 group-hover:border-none p-2 rotate-45"
+                            viewBox="0 0 16 19" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658 -0.0976311 7.68342 -0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z"
+                                class="fill-gray-800 group-hover:fill-gray-800"></path>
+                        </svg>
                     </a>
                 </div>
             </div>
@@ -125,8 +140,7 @@
             <!-- Left Side - Image -->
             <div class="order-2 md:order-1 w-auto" data-aos="fade-right">
                 <div class="h-[300px] md:h-[450px] lg:h-[500px] xl:h-[550px] overflow-hidden rounded-lg shadow-xl">
-                    <img src="{% static 'property/20.jpg' %}"
-                        alt="Team collaboration"
+                    <img src="{% static 'property/20.jpg' %}" alt="Team collaboration"
                         class="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105">
                 </div>
             </div>
@@ -276,8 +290,7 @@
                 </div>
 
                 <!-- Hover image -->
-                <img src="/static/property/13.jpg"
-                    alt="What We Offer"
+                <img src="/static/property/13.jpg" alt="What We Offer"
                     class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transform group-hover:scale-110 transition-all duration-700" />
             </div>
 
@@ -329,7 +342,7 @@
                 <!-- Dark overlay with name -->
                 <div
                     class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
-                    <p class="text-white text-center px-2">{{ i.title }}</p>
+                    <p class="text-white text-xl text-semibold text-center px-2">{{ i.title }}</p>
                 </div>
             </div>
             {% endfor %}

@@ -15,6 +15,20 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
 
+
+  <!-- Favicons / Site icons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'image/logo.jpg' %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'image/logo.jpg' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'image/logo.jpg' %}">
+  <link rel="shortcut icon" href="{% static 'image/logo.jpg' %}">
+  <link rel="manifest" href="{% static 'image/logo.jpg' %}">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="{% static 'image/logo.jpg' %}">
+  <meta name="theme-color" content="#ffffff">
+  <!-- optional SVG mask for Safari pinned tabs -->
+  <link rel="mask-icon" href="{% static 'image/logo.jpg' %}" color="#fbbf24">
+
+
   <script>
     tailwind.config = {
       theme: {
@@ -129,22 +143,22 @@
 
 <!-- Loader -->
 <div id="loader" class="fixed inset-0 bg-white flex flex-col items-center justify-center z-50 gap-4">
-    <!-- GIF Image -->
-    <img src="{% static 'image/loader.gif' %}" alt="Loading..." class="w-auto h-36">
+  <!-- GIF Image -->
+  <img src="{% static 'image/loader.gif' %}" alt="Loading..." class="w-auto h-36">
 
-    <!-- Round Spinner -->
-    <div class="w-10 h-10 border-4 border-t-gray-900 border-gray-900 border-b-red rounded-full animate-spin"></div>
+  <!-- Round Spinner -->
+  <div class="w-10 h-10 border-4 border-t-gray-900 border-gray-900 border-b-red rounded-full animate-spin"></div>
 </div>
 
 
 
 <script>
-    window.addEventListener('load', function() {
-        const loader = document.getElementById('loader');
-        loader.style.transition = 'opacity 0.5s ease';
-        loader.style.opacity = 0;
-        setTimeout(() => loader.style.display = 'none', 500);
-    });
+  window.addEventListener('load', function () {
+    const loader = document.getElementById('loader');
+    loader.style.transition = 'opacity 0.5s ease';
+    loader.style.opacity = 0;
+    setTimeout(() => loader.style.display = 'none', 500);
+  });
 </script>
 
 
@@ -175,8 +189,85 @@
               class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue hover:bg-blue/5 rounded-lg transition-all duration-200">Management</a>
             <a href="{% url 'projects' %}"
               class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue hover:bg-blue/5 rounded-lg transition-all duration-200">Projects</a>
-            <a href="{% url 'contact' %}"
-              class="ml-2 px-6 py-2.5 text-sm font-semibold text-white bg-blue hover:bg-blue/90 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md">Contact</a>
+
+            <button class="button">
+              Contact Us
+              <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                <path fill-rule="evenodd"
+                  d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm4.28 10.28a.75.75 0 000-1.06l-3-3a.75.75 0 10-1.06 1.06l1.72 1.72H8.25a.75.75 0 000 1.5h5.69l-1.72 1.72a.75.75 0 101.06 1.06l3-3z"
+                  clip-rule="evenodd"></path>
+              </svg>
+            </button>
+            <style>
+              /* From Uiverse.io by satyamchaudharydev */
+              .button {
+                position: relative;
+                transition: all 0.3s ease-in-out;
+                box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+                padding-block: 0.3rem;
+                padding-inline: 1rem;
+                background-color: rgb(0 107 179);
+                border-radius: 9999px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #ffff;
+                gap: 10px;
+                font-weight: bold;
+                border: 3px solid #ffffff4d;
+                outline: none;
+                overflow: hidden;
+                font-size: 15px;
+                cursor: pointer;
+              }
+
+              .icon {
+                width: 24px;
+                height: 24px;
+                transition: all 0.3s ease-in-out;
+              }
+
+              .button:hover {
+                transform: scale(1.05);
+                border-color: #fff9;
+              }
+
+              .button:hover .icon {
+                transform: translate(4px);
+              }
+
+              .button:hover::before {
+                animation: shine 1.5s ease-out infinite;
+              }
+
+              .button::before {
+                content: "";
+                position: absolute;
+                width: 100px;
+                height: 100%;
+                background-image: linear-gradient(120deg,
+                    rgba(255, 255, 255, 0) 30%,
+                    rgba(255, 255, 255, 0.8),
+                    rgba(255, 255, 255, 0) 70%);
+                top: 0;
+                left: -100px;
+                opacity: 0.6;
+              }
+
+              @keyframes shine {
+                0% {
+                  left: -100px;
+                }
+
+                60% {
+                  left: 100%;
+                }
+
+                to {
+                  left: 100%;
+                }
+              }
+            </style>
           </div>
 
           <!-- Mobile Menu Button -->
