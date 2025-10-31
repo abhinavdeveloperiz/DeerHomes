@@ -173,7 +173,7 @@
 
           <!-- Logo -->
           <a href="{% url 'home' %}" class="flex items-center space-x-3 group">
-            <img src="{% static 'image/logo.jpg' %}" alt="DeerHomes Logo"
+            <img src="{% static 'image/logo.png' %}" alt="DeerHomes Logo"
               class="h-20 py-1 w-auto transition-transform duration-300 group-hover:scale-105">
           </a>
 
@@ -181,12 +181,16 @@
           <div class="hidden lg:flex items-center space-x-1">
             <a href="{% url 'home' %}"
               class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue hover:bg-blue/5 rounded-lg transition-all duration-200">Home</a>
-            <a href="{% url 'about' %}"
-              class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue hover:bg-blue/5 rounded-lg transition-all duration-200">About</a>
+            
             <a href="{% url 'services' %}"
               class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue hover:bg-blue/5 rounded-lg transition-all duration-200">Services</a>
+            
+            <a href="{% url 'about' %}"
+              class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue hover:bg-blue/5 rounded-lg transition-all duration-200">About</a>
+
             <a href="{% url 'management' %}"
               class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue hover:bg-blue/5 rounded-lg transition-all duration-200">Management</a>
+
             <a href="{% url 'projects' %}"
               class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue hover:bg-blue/5 rounded-lg transition-all duration-200">Projects</a>
 
@@ -292,7 +296,7 @@
 
       <!-- Mobile Menu Header -->
       <div class="flex items-center justify-between p-6 border-b border-gray-200">
-        <img src="{% static 'image/logo.jpg' %}" alt="DeerHomes Logo" class="h-10 w-auto">
+        <img src="{% static 'image/logo.png' %}" alt="DeerHomes Logo" class="h-10 w-auto">
         <button id="close-menu"
           class="p-2 text-gray-700 hover:text-blue hover:bg-gray-100 rounded-lg transition-colors duration-200">
           <i data-lucide="x" class="w-6 h-6"></i>
@@ -307,16 +311,19 @@
             <i data-lucide="home" class="w-5 h-5 mr-3"></i>
             Home
           </a>
-          <a href="{% url 'about' %}"
-            class="flex items-center px-4 py-3 text-base font-medium text-gray-700 hover:text-blue hover:bg-blue/5 rounded-lg transition-all duration-200">
-            <i data-lucide="badge-info" class="w-5 h-5 mr-3"></i>
-            About
-          </a>
+
           <a href="{% url 'services' %}"
             class="flex items-center px-4 py-3 text-base font-medium text-gray-700 hover:text-blue hover:bg-blue/5 rounded-lg transition-all duration-200">
             <i data-lucide="briefcase" class="w-5 h-5 mr-3"></i>
             Services
           </a>
+          
+          <a href="{% url 'about' %}"
+            class="flex items-center px-4 py-3 text-base font-medium text-gray-700 hover:text-blue hover:bg-blue/5 rounded-lg transition-all duration-200">
+            <i data-lucide="badge-info" class="w-5 h-5 mr-3"></i>
+            About
+          </a>
+          
           <a href="{% url 'management' %}"
             class="flex items-center px-4 py-3 text-base font-medium text-gray-700 hover:text-blue hover:bg-blue/5 rounded-lg transition-all duration-200">
             <i data-lucide="users" class="w-5 h-5 mr-3"></i>
@@ -376,7 +383,7 @@
 
         <!-- Company Info -->
         <div class="space-y-4">
-          <img src="{% static 'image/logo.jpg' %}" alt="DeerHomes Logo" class="h-24 w-auto">
+          <img src="{% static 'image/logo.png' %}" alt="DeerHomes Logo" class="h-24 w-auto">
           <p class="text-sm text-gray-300 leading-relaxed">Building dreams, creating homes. Your trusted partner in real
             estate excellence and property management.</p>
           <div class="flex items-center space-x-3">
