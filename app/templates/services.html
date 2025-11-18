@@ -56,13 +56,107 @@
     </div>
 </section>
 
-<section class="py-16 px-4 bg-gray-50">
-    <div class="max-w-7xl mx-auto text-gray-800">
+
+
+<style>
+    .line-clamp-4 {
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    /* Popup styles */
+    .popup-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 9999;
+        overflow-y: auto;
+        padding: 20px;
+    }
+
+    .popup-overlay.active {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .popup-content {
+        background: white;
+        border-radius: 16px;
+        max-width: 800px;
+        width: 100%;
+        max-height: 90vh;
+        overflow-y: auto;
+        position: relative;
+        animation: slideIn 0.3s ease-out;
+    }
+
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateY(-50px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .popup-close {
+        position: sticky;
+        top: 0;
+        right: 0;
+        background: #EAB308;
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 24px;
+        font-weight: bold;
+        z-index: 10;
+        margin-left: auto;
+        margin-bottom: -40px;
+        margin-right: 20px;
+        margin-top: 20px;
+        transition: all 0.3s;
+    }
+
+    .popup-close:hover {
+        background: #CA8A04;
+        transform: rotate(90deg);
+    }
+
+    @media (max-width: 768px) {
+        .popup-content {
+            margin: 20px;
+            max-height: 85vh;
+        }
+    }
+</style>
+
+<section class="py-16 px-4 bg-fixed bg-cover bg-center relative"
+    style="background-image: url('https://i.redd.it/6f4vsn10cf5f1.jpeg');">
+
+    <!-- Dark Overlay -->
+    <div class="absolute inset-0 bg-black/50"></div>
+
+    <div class="max-w-7xl mx-auto text-gray-800 relative z-10">
         <div class="text-center mb-16" data-aos="fade-up">
             <h2 class="text-4xl md:text-4xl font-semibold text-blue leading-tight">
-                Our Services in <span class="text-yellow font-semibold">Detail</span>
+                Services and <span class="text-yellow font-semibold">Solutions</span>
             </h2>
-            <p class="text-lg text-gray-600 mt-4 max-w-3xl mx-auto">
+            <p class="text-lg text-gray-200 mt-4 max-w-3xl mx-auto">
                 Explore the depth of our expertise across architecture, interior design, and construction –
                 where innovation meets impeccable execution.
             </p>
@@ -72,9 +166,9 @@
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 
             <!-- Architectural Design -->
-            <div class="relative rounded-2xl overflow-hidden shadow-2xl group bg-cover bg-center min-h-[450px]"
-                style="background-image: url('https://i.pinimg.com/originals/4f/02/1a/4f021a2b7a06582536201a50817514de.jpg');"
-                data-aos="fade-up" data-aos-delay="100">
+            <div class="relative rounded-2xl overflow-hidden shadow-2xl group bg-cover bg-center min-h-[450px] cursor-pointer"
+                style="background-image: url('https://2.bp.blogspot.com/-CqRXXf25ou8/WUTXqWdQXuI/AAAAAAABCas/PsgAcS3-D2sREA3jvZQqz4LRzXRQbex_ACLcBGAs/s1920/creative-home-architectural.jpg');"
+                data-aos="fade-up" data-aos-delay="100" onclick="openPopup('architectural')">
                 <div class="absolute inset-0 bg-black/30 group-hover:bg-black/70 transition-all duration-300"></div>
                 <div class="relative z-10 h-full flex flex-col justify-end p-6 text-white">
                     <h3 class="text-2xl font-extrabold mb-3">Architectural Design</h3>
@@ -85,23 +179,17 @@
                         spaces crafted by skilled home designers, custom designed luxury homes, dynamic
                         commercial environments shaped by experienced commercial architects, and
                         luxurious, sophisticated designs from our acclaimed star hotel designers.
-                        In addition to architectural excellence, our talented interior designers in Kollam work
-                        closely with clients to create harmonious and stylish interiors that complement each
-                        project’s unique vision. At DeerHomes, we blend creativity, functionality, and
-                        sustainability to bring your dream spaces to life with precision and passion.
-                        Partner with DeerHomes for expert architectural and interior design services that set
-                        new standards in Kollam and beyond.
                     </p>
-                    <button class="read-more-btn text-yellow font-semibold text-sm hover:text-white transition">
+                    <button class="text-yellow-500 font-semibold text-sm hover:text-white transition">
                         Read more...
                     </button>
                 </div>
             </div>
 
             <!-- Interior Design -->
-            <div class="relative rounded-2xl overflow-hidden shadow-2xl group bg-cover bg-center min-h-[450px]"
+            <div class="relative rounded-2xl overflow-hidden shadow-2xl group bg-cover bg-center min-h-[450px] cursor-pointer"
                 style="background-image: url('https://images.adsttc.com/media/images/6037/0ec7/f91c/8122/3000/03d3/large_jpg/_FI_2_EXTERIOR_2.jpg?1614220985');"
-                data-aos="fade-up" data-aos-delay="200">
+                data-aos="fade-up" data-aos-delay="200" onclick="openPopup('residential')">
                 <div class="absolute inset-0 bg-black/30 group-hover:bg-black/70 transition-all duration-300"></div>
                 <div class="relative z-10 h-full flex flex-col justify-end p-6 text-white">
                     <h3 class="text-2xl font-extrabold mb-3">Residential architecture</h3>
@@ -112,21 +200,18 @@
                         luxury home architecture. Whether you're building your dream villa or transforming
                         your existing home, our team of experienced home renovation architects and luxury
                         home designers is dedicated to delivering personalized solutions tailored to your
-                        lifestyle. Our expert team of architects and engineers combine technical excellence,
-                        professionalism and years of experience to design and build exceptional homes
-                        making us one of the best builders in Kollam, Kerala. Discover elegant designs,
-                        flawless execution, and a commitment to excellence—only at Deerhomes.
+                        lifestyle.
                     </p>
-                    <button class="read-more-btn text-yellow font-semibold text-sm hover:text-white transition">
+                    <button class="text-yellow-500 font-semibold text-sm hover:text-white transition">
                         Read more...
                     </button>
                 </div>
             </div>
 
             <!-- Construction Services -->
-            <div class="relative rounded-2xl overflow-hidden shadow-2xl group bg-cover bg-center min-h-[450px]"
+            <div class="relative rounded-2xl overflow-hidden shadow-2xl group bg-cover bg-center min-h-[450px] cursor-pointer"
                 style="background-image: url('https://img.freepik.com/free-photo/civil-engineer-construction-worker-manager-holding-digital-tablet-blueprints-talking-planing-about-construction-site-cooperation-teamwork-concept_640221-156.jpg?semt=ais_hybrid&w=740&q=80');"
-                data-aos="fade-up" data-aos-delay="300">
+                data-aos="fade-up" data-aos-delay="300" onclick="openPopup('construction')">
                 <div class="absolute inset-0 bg-black/30 group-hover:bg-black/70 transition-all duration-300"></div>
                 <div class="relative z-10 h-full flex flex-col justify-end p-6 text-white">
                     <h3 class="text-2xl font-extrabold mb-3">Construction Services</h3>
@@ -136,20 +221,18 @@
                         Recognized as the best commercial builders in the region, we specialize in creating
                         durable, innovative, and aesthetically designed structures. As experienced builders
                         of hotels, we combine functionality with luxury to meet the unique demands of the
-                        hospitality industry. Backed by a professional team of engineers, project managers,
-                        and construction experts, Deerhomes ensures every project is executed with
-                        precision, efficiency, and excellence from concept to completion.
+                        hospitality industry.
                     </p>
-                    <button class="read-more-btn text-yellow font-semibold text-sm hover:text-white transition">
+                    <button class="text-yellow-500 font-semibold text-sm hover:text-white transition">
                         Read more...
                     </button>
                 </div>
             </div>
 
             <!-- Hotel Design -->
-            <div class="relative rounded-2xl overflow-hidden shadow-2xl group bg-cover bg-center min-h-[450px]"
+            <div class="relative rounded-2xl overflow-hidden shadow-2xl group bg-cover bg-center min-h-[450px] cursor-pointer"
                 style="background-image: url('https://www.nichiha.com/uploads/Nichiha-Cedar-Hospitality.png');"
-                data-aos="fade-up" data-aos-delay="400">
+                data-aos="fade-up" data-aos-delay="400" onclick="openPopup('hotel')">
                 <div class="absolute inset-0 bg-black/30 group-hover:bg-black/70 transition-all duration-300"></div>
                 <div class="relative z-10 h-full flex flex-col justify-end p-6 text-white">
                     <h3 class="text-2xl font-extrabold mb-3">Hotel Design</h3>
@@ -159,47 +242,41 @@
                         luxury star hotel designers and architects, we specialize in crafting stunning interiors
                         and iconic structures that elevate the guest experience. Recognized among the best
                         star hotel designers in Kerala, our team delivers world-class designs tailored to each
-                        client’s vision, ensuring both aesthetic brilliance and operational excellence. With a
-                        reputation as the best architecture firm in Kerala, Deerhomes is your trusted partner
-                        for designing unforgettable, high-end hotel destinations.
+                        client's vision, ensuring both aesthetic brilliance and operational excellence.
                     </p>
-                    <button class="read-more-btn text-yellow font-semibold text-sm hover:text-white transition">
+                    <button class="text-yellow-500 font-semibold text-sm hover:text-white transition">
                         Read more...
                     </button>
                 </div>
             </div>
 
             <!-- Commercial Architecture -->
-            <div class="relative rounded-2xl overflow-hidden shadow-2xl group bg-cover bg-center min-h-[450px]"
+            <div class="relative rounded-2xl overflow-hidden shadow-2xl group bg-cover bg-center min-h-[450px] cursor-pointer"
                 style="background-image: url('https://www.shutterstock.com/image-photo/majestic-industrial-commercial-office-building-600nw-2479144653.jpg');"
-                data-aos="fade-up" data-aos-delay="500">
+                data-aos="fade-up" data-aos-delay="500" onclick="openPopup('commercial')">
                 <div class="absolute inset-0 bg-black/30 group-hover:bg-black/70 transition-all duration-300"></div>
                 <div class="relative z-10 h-full flex flex-col justify-end p-6 text-white">
                     <h3 class="text-2xl font-extrabold mb-3">Commercial Architecture</h3>
                     <p class="text-sm text-justify mb-4 line-clamp-4">
                         Commercial buildings and malls
-                        Deerhomes – Shaping Kerala’s Skyline with Innovative Commercial & Institutional
+                        Deerhomes – Shaping Kerala's Skyline with Innovative Commercial & Institutional
                         Architecture
                         Deerhomes stands as one of the best commercial architects in Kollam, delivering
                         cutting-edge design solutions for business spaces, malls, institutions, and urban
                         infrastructure. As experienced commercial mall designers and designers of high-rise
                         buildings in Kerala, we specialize in creating iconic, functional, and future-ready
-                        structures. Our reputation as the best institutional building designers is built on a
-                        commitment to architectural excellence, sustainability, and precision planning.
-                        Whether it's a commercial complex, educational campus, or a multi-storey
-                        development, Deerhomes transforms ideas into architectural landmarks across
-                        Kerala.
+                        structures.
                     </p>
-                    <button class="read-more-btn text-yellow font-semibold text-sm hover:text-white transition">
+                    <button class="text-yellow-500 font-semibold text-sm hover:text-white transition">
                         Read more...
                     </button>
                 </div>
             </div>
 
             <!-- Public Spaces -->
-            <div class="relative rounded-2xl overflow-hidden shadow-2xl group bg-cover bg-center min-h-[450px]"
+            <div class="relative rounded-2xl overflow-hidden shadow-2xl group bg-cover bg-center min-h-[450px] cursor-pointer"
                 style="background-image: url('https://images.adsttc.com/media/images/5de4/ed20/3312/fda8/2a00/01ae/large_jpg/FEATURE_FO_DOMINO_PARK_08_THE_LAWN_BARRETT_DOHERTY.jpg?1575283990');"
-                data-aos="fade-up" data-aos-delay="600">
+                data-aos="fade-up" data-aos-delay="600" onclick="openPopup('public')">
                 <div class="absolute inset-0 bg-black/30 group-hover:bg-black/70 transition-all duration-300"></div>
                 <div class="relative z-10 h-full flex flex-col justify-end p-6 text-white">
                     <h3 class="text-2xl font-extrabold mb-3">Public Spaces & Parks</h3>
@@ -208,11 +285,9 @@
                         design that enhances community living and urban aesthetics. We create innovative,
                         sustainable, and user-friendly outdoor environments that inspire connection and well-being.
                         From urban parks to recreational landscapes, Deerhomes combines functionality with
-                        creativity to transform open spaces into vibrant community hubs. Our expert team is
-                        committed to designing inclusive public spaces that serve people of all ages, setting us apart
-                        as a top choice for park and public space design in Kerala and beyond
+                        creativity to transform open spaces into vibrant community hubs.
                     </p>
-                    <button class="read-more-btn text-yellow font-semibold text-sm hover:text-white transition">
+                    <button class="text-yellow-500 font-semibold text-sm hover:text-white transition">
                         Read more...
                     </button>
                 </div>
@@ -220,25 +295,264 @@
 
         </div>
     </div>
-
-    <script>
-        // Expand / collapse functionality
-        document.addEventListener('DOMContentLoaded', () => {
-            const buttons = document.querySelectorAll('.read-more-btn');
-            buttons.forEach(btn => {
-                btn.addEventListener('click', e => {
-                    const p = e.target.previousElementSibling;
-                    p.classList.toggle('line-clamp-4');
-                    if (p.classList.contains('line-clamp-4')) {
-                        e.target.textContent = 'Read more...';
-                    } else {
-                        e.target.textContent = 'Read less';
-                    }
-                });
-            });
-        });
-    </script>
 </section>
+
+<div class="popup-overlay" id="popupOverlay" onclick="closePopupOnOverlay(event)">
+    <div class="popup-content" onclick="event.stopPropagation()">
+        <div class="popup-close" onclick="closePopup()">&times;</div>
+        <div id="popupBody"></div>
+    </div>
+</div>
+
+<script>
+    // Initialize AOS
+    AOS.init({
+        duration: 1000,
+        once: true
+    });
+
+    const popupContent = {
+        architectural: {
+            title: 'Architectural Design',
+            image: 'https://2.bp.blogspot.com/-CqRXXf25ou8/WUTXqWdQXuI/AAAAAAABCas/PsgAcS3-D2sREA3jvZQqz4LRzXRQbex_ACLcBGAs/s1920/creative-home-architectural.jpg',
+            content: `DeerHomes is home to a team of some of the best architects in Kollam and Kerala who specialize in delivering innovative and tailored architectural solutions. Our firm offers comprehensive services across a wide range of projects, including residential spaces crafted by skilled home designers, custom designed luxury homes, dynamic commercial environments shaped by experienced commercial architects, and luxurious, sophisticated designs from our acclaimed star hotel designers.
+            <br><br>
+            In addition to architectural excellence, our talented interior designers in Kollam work closely with clients to create harmonious and stylish interiors that complement each project's unique vision. At DeerHomes, we blend creativity, functionality, and sustainability to bring your dream spaces to life with precision and passion.
+            <br><br>
+            Partner with DeerHomes for expert architectural and interior design services that set new standards in Kollam and beyond.`
+        },
+        residential: {
+            title: 'Residential Architecture',
+            image: 'https://images.adsttc.com/media/images/6037/0ec7/f91c/8122/3000/03d3/large_jpg/_FI_2_EXTERIOR_2.jpg?1614220985',
+            content: `At Deerhomes, we specialize in crafting exceptional residential spaces that blend style, comfort, and functionality. Our team of some of the best architects in Kollam, Kerala, bring years of expertise in innovative home design, home renovation, and luxury home architecture. Whether you're building your dream villa or transforming your existing home, our team of experienced home renovation architects and luxury home designers is dedicated to delivering personalized solutions tailored to your lifestyle.
+            <br><br>
+            Our expert team of architects and engineers combine technical excellence, professionalism and years of experience to design and build exceptional homes making us one of the best builders in Kollam, Kerala. Discover elegant designs, flawless execution, and a commitment to excellence—only at Deerhomes.`
+        },
+        construction: {
+            title: 'Construction Services',
+            image: 'https://img.freepik.com/free-photo/civil-engineer-construction-worker-manager-holding-digital-tablet-blueprints-talking-planing-about-construction-site-cooperation-teamwork-concept_640221-156.jpg?semt=ais_hybrid&w=740&q=80',
+            content: `Deerhomes stands out as one of the best builders in Kollam, delivering high-quality construction services for residential, commercial, and hospitality projects. Recognized as the best commercial builders in the region, we specialize in creating durable, innovative, and aesthetically designed structures. As experienced builders of hotels, we combine functionality with luxury to meet the unique demands of the hospitality industry.
+            <br><br>
+            Backed by a professional team of engineers, project managers, and construction experts, Deerhomes ensures every project is executed with precision, efficiency, and excellence from concept to completion.`
+        },
+        hotel: {
+            title: 'Hotel Design',
+            image: 'https://www.nichiha.com/uploads/Nichiha-Cedar-Hospitality.png',
+            content: `Deerhomes is a premier architecture and design firm, renowned for creating exceptional hospitality spaces that blend luxury, innovation, and functionality. As luxury star hotel designers and architects, we specialize in crafting stunning interiors and iconic structures that elevate the guest experience. Recognized among the best star hotel designers in Kerala, our team delivers world-class designs tailored to each client's vision, ensuring both aesthetic brilliance and operational excellence.
+            <br><br>
+            With a reputation as the best architecture firm in Kerala, Deerhomes is your trusted partner for designing unforgettable, high-end hotel destinations.`
+        },
+        commercial: {
+            title: 'Commercial Architecture',
+            image: 'https://www.shutterstock.com/image-photo/majestic-industrial-commercial-office-building-600nw-2479144653.jpg',
+            content: `<strong>Commercial buildings and malls</strong><br>
+            Deerhomes – Shaping Kerala's Skyline with Innovative Commercial & Institutional Architecture
+            <br><br>
+            Deerhomes stands as one of the best commercial architects in Kollam, delivering cutting-edge design solutions for business spaces, malls, institutions, and urban infrastructure. As experienced commercial mall designers and designers of high-rise buildings in Kerala, we specialize in creating iconic, functional, and future-ready structures. Our reputation as the best institutional building designers is built on a commitment to architectural excellence, sustainability, and precision planning.
+            <br><br>
+            Whether it's a commercial complex, educational campus, or a multi-storey development, Deerhomes transforms ideas into architectural landmarks across Kerala.`
+        },
+        public: {
+            title: 'Public Spaces & Parks',
+            image: 'https://images.adsttc.com/media/images/5de4/ed20/3312/fda8/2a00/01ae/large_jpg/FEATURE_FO_DOMINO_PARK_08_THE_LAWN_BARRETT_DOHERTY.jpg?1575283990',
+            content: `Deerhomes is a leading architecture and design firm specializing in park and public space design that enhances community living and urban aesthetics. We create innovative, sustainable, and user-friendly outdoor environments that inspire connection and well-being.
+            <br><br>
+            From urban parks to recreational landscapes, Deerhomes combines functionality with creativity to transform open spaces into vibrant community hubs. Our expert team is committed to designing inclusive public spaces that serve people of all ages, setting us apart as a top choice for park and public space design in Kerala and beyond.`
+        }
+    };
+
+    function openPopup(type) {
+        const data = popupContent[type];
+        const popupBody = document.getElementById('popupBody');
+
+        popupBody.innerHTML = `
+            <div class="relative">
+                <img src="${data.image}" alt="${data.title}" class="w-full h-64 md:h-80 object-cover rounded-t-2xl">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-t-2xl"></div>
+            </div>
+            <div class="p-6 md:p-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">${data.title}</h2>
+                <div class="text-gray-700 text-base md:text-lg leading-relaxed text-justify">
+                    ${data.content}
+                </div>
+            </div>
+        `;
+
+        document.getElementById('popupOverlay').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closePopup() {
+        document.getElementById('popupOverlay').classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+    function closePopupOnOverlay(event) {
+        if (event.target.id === 'popupOverlay') {
+            closePopup();
+        }
+    }
+
+    // Close popup on escape key
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') {
+            closePopup();
+        }
+    });
+</script>
+
+
+
+<!-- <section class="py-16 px-4 bg-fixed bg-cover bg-center"
+    style="background-image: url('https://i.pinimg.com/originals/4f/02/1a/4f021a2b7a06582536201a50817514de.jpg');">
+
+    <div class="max-w-7xl mx-auto text-gray-200">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-4xl font-semibold leading-tight">
+                Services and <span class="text-yellow-400 font-semibold">Solutions</span>
+            </h2>
+            <p class="text-lg text-gray-300 mt-4 max-w-3xl mx-auto">
+                Explore our expertise across architecture, interior design, construction and more.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <div class="service-card relative rounded-2xl overflow-hidden shadow-2xl bg-cover bg-center cursor-pointer"
+                data-title="Architectural Design"
+                data-img="https://i.pinimg.com/originals/4f/02/1a/4f021a2b7a06582536201a50817514de.jpg"
+                data-desc="DeerHomes is home to a team of leading architects in Kollam and Kerala offering modern architectural solutions, luxury home concepts, commercial building planning and star hotel design. Our interior design team collaborates closely with clients to craft harmonious, functional and stylish spaces. We combine creativity, sustainability and precision engineering to deliver world-class architectural projects in Kerala and beyond."
+                style="background-image: url('https://i.pinimg.com/originals/4f/02/1a/4f021a2b7a06582536201a50817514de.jpg');">
+
+                <div class="absolute inset-0 bg-black/40 transition-all"></div>
+                <div class="relative z-10 h-full flex flex-col justify-end p-6 text-white">
+                    <h3 class="text-2xl font-extrabold mb-3">Architectural Design</h3>
+                    <p class="text-sm line-clamp-4 opacity-90">DeerHomes is home to a team of leading architects...</p>
+                    <button class="text-yellow-400 font-semibold mt-3 text-sm">Read More</button>
+                </div>
+            </div>
+
+            <div class="service-card relative rounded-2xl overflow-hidden shadow-2xl bg-cover bg-center cursor-pointer"
+                data-title="Residential Architecture"
+                data-img="https://images.adsttc.com/media/images/6037/0ec7/f91c/8122/3000/03d3/large_jpg/_FI_2_EXTERIOR_2.jpg"
+                data-desc="At DeerHomes, we create elegant and functional residential designs including villas, home renovations, luxury homes and fully customized residential architecture. Our expert engineers and architects deliver durable, aesthetic and high-quality home solutions designed uniquely for your lifestyle."
+                style="background-image: url('https://images.adsttc.com/media/images/6037/0ec7/f91c/8122/3000/03d3/large_jpg/_FI_2_EXTERIOR_2.jpg');">
+
+                <div class="absolute inset-0 bg-black/40 transition-all"></div>
+                <div class="relative z-10 h-full flex flex-col justify-end p-6 text-white">
+                    <h3 class="text-2xl font-extrabold mb-3">Residential Architecture</h3>
+                    <p class="text-sm line-clamp-4 opacity-90">At DeerHomes, we create elegant...</p>
+                    <button class="text-yellow-400 font-semibold mt-3 text-sm">Read More</button>
+                </div>
+            </div>
+
+            <div class="service-card relative rounded-2xl overflow-hidden shadow-2xl bg-cover bg-center cursor-pointer"
+                data-title="Construction Services"
+                data-img="https://img.freepik.com/free-photo/civil-engineer-construction-worker-manager-holding-digital-tablet-blueprints-talking-planing-about-construction-site-cooperation-teamwork-concept_640221-156.jpg"
+                data-desc="DeerHomes delivers premium construction solutions for residential, commercial and hospitality projects. Recognized as one of the top builders in Kollam, our team ensures precise execution, premium materials and on-time delivery for every project."
+                style="background-image: url('https://img.freepik.com/free-photo/civil-engineer-construction-worker-manager-holding-digital-tablet-blueprints-talking-planing-about-construction-site-cooperation-teamwork-concept_640221-156.jpg');">
+
+                <div class="absolute inset-0 bg-black/40 transition-all"></div>
+                <div class="relative z-10 h-full flex flex-col justify-end p-6 text-white">
+                    <h3 class="text-2xl font-extrabold mb-3">Construction Services</h3>
+                    <p class="text-sm line-clamp-4 opacity-90">DeerHomes delivers premium construction...</p>
+                    <button class="text-yellow-400 font-semibold mt-3 text-sm">Read More</button>
+                </div>
+            </div>
+
+            <div class="service-card relative rounded-2xl overflow-hidden shadow-2xl bg-cover bg-center cursor-pointer"
+                data-title="Hotel Design" data-img="https://www.nichiha.com/uploads/Nichiha-Cedar-Hospitality.png"
+                data-desc="Deerhomes is a premier architecture and design firm, renowned for creating
+                        exceptional hospitality spaces that blend luxury, innovation, and functionality. As
+                        luxury star hotel designers and architects, we specialize in crafting stunning interiors
+                        and iconic structures that elevate the guest experience. Recognized among the best
+                        star hotel designers in Kerala, our team delivers world-class designs tailored to each
+                        client’s vision, ensuring both aesthetic brilliance and operational excellence. With a
+                        reputation as the best architecture firm in Kerala, Deerhomes is your trusted partner
+                        for designing unforgettable, high-end hotel destinations."
+                style="background-image: url('https://www.nichiha.com/uploads/Nichiha-Cedar-Hospitality.png');">
+
+                <div class="absolute inset-0 bg-black/40 transition-all"></div>
+                <div class="relative z-10 h-full flex flex-col justify-end p-6 text-white">
+                    <h3 class="text-2xl font-extrabold mb-3">Hotel Design</h3>
+                    <p class="text-sm line-clamp-4 opacity-90">Deerhomes is a premier architecture and design firm...
+                    </p>
+                    <button class="text-yellow-400 font-semibold mt-3 text-sm">Read More</button>
+                </div>
+            </div>
+
+
+            <div class="service-card relative rounded-2xl overflow-hidden shadow-2xl bg-cover bg-center cursor-pointer"
+                data-title="Commercial Architecture"
+                data-img="https://www.shutterstock.com/image-photo/majestic-industrial-commercial-office-building-600nw-2479144653.jpg"
+                data-desc="Commercial buildings and malls Deerhomes – Shaping Kerala’s Skyline with Innovative Commercial & Institutional Architecture Deerhomes stands as one of the best commercial architects in Kollam, delivering cutting-edge design solutions for business spaces, malls, institutions, and urban infrastructure. As experienced commercial mall designers and designers of high-rise buildings in Kerala, we specialize in creating iconic, functional, and future-ready structures. Our reputation as the best institutional building designers is built on a commitment to architectural excellence, sustainability, and precision planning. Whether it's a commercial complex, educational campus, or a multi-storey development, Deerhomes transforms ideas into architectural landmarks across Kerala."
+                style="background-image: url('https://www.shutterstock.com/image-photo/majestic-industrial-commercial-office-building-600nw-2479144653.jpg');">
+
+                <div class="absolute inset-0 bg-black/40 transition-all"></div>
+                <div class="relative z-10 h-full flex flex-col justify-end p-6 text-white">
+                    <h3 class="text-2xl font-extrabold mb-3">Commercial Architecture</h3>
+                    <p class="text-sm line-clamp-4 opacity-90">Commercial buildings and malls Deerhomes...
+                    </p>
+                    <button class="text-yellow-400 font-semibold mt-3 text-sm">Read More</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="popupModal"
+        class="hidden fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center z-[999] p-4">
+        <div class="bg-white max-w-3xl w-full rounded-2xl overflow-hidden relative">
+
+            <button id="closePopup"
+                class="absolute top-3 right-3 bg-black/60 text-white w-8 h-8 flex items-center justify-center rounded-full text-xl">
+                ×
+            </button>
+
+            <div>
+                <img id="popupImg" src="" class="w-full h-64 object-cover">
+            </div>
+
+            <div class="p-6">
+                <h2 id="popupTitle" class="text-3xl font-bold mb-3 text-gray-800"></h2>
+                <p id="popupDesc" class="text-gray-700 leading-relaxed"></p>
+            </div>
+        </div>
+    </div>
+
+</section> -->
+
+
+
+<!-- 
+<script>
+    // POPUP FUNCTIONALITY
+    const cards = document.querySelectorAll(".service-card");
+    const modal = document.getElementById("popupModal");
+    const closeBtn = document.getElementById("closePopup");
+
+    cards.forEach(card => {
+        card.addEventListener("click", () => {
+            document.getElementById("popupTitle").innerText = card.dataset.title;
+            document.getElementById("popupDesc").innerText = card.dataset.desc;
+            document.getElementById("popupImg").src = card.dataset.img;
+
+            modal.classList.remove("hidden");
+        });
+    });
+
+    closeBtn.addEventListener("click", () => {
+        modal.classList.add("hidden");
+    });
+
+    // close when clicking outside
+    modal.addEventListener("click", e => {
+        if (e.target === modal) modal.classList.add("hidden");
+    });
+</script> -->
+
+
+
 
 
 <section class="relative w-full bg-fixed bg-center bg-cover py-20"
