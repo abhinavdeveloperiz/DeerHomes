@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ service.title }}{% endblock %}
+
+{% block content %}
+
+<!-- ================= HERO ================= -->
+<section class="relative h-[30vh] md:h-[45vh] bg-fixed bg-cover bg-center"
+    style="background-image:url('{{ service.image1.url }}')">
+    <div class="absolute inset-0 bg-black/70"></div>
+
+    <div class="relative z-10 flex items-center justify-center h-full text-center text-white px-4">
+        <div>
+            <h1 class="text-4xl md:text-5xl font-bold mb-3">{{ service.title }}</h1>
+            <p class="text-gray-300 text-sm">
+                <a href="/" class="hover:underline">Home</a> /
+                <a href="{% url 'services' %}" class="hover:underline">Services</a> /
+                <a href="{% url 'service_category_detail' service.category.id %}" class="hover:underline">
+                    {{ service.category.name }}
+                </a>
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ================= CONTENT ================= -->
+<section class="py-20 px-4 bg-gray-50">
+    <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-14">
+
+        <!-- ================= IMAGE GALLERY ================= -->
+        <div>
+            <!-- MAIN IMAGE -->
+            <div onclick="openGallery(0)"
+                class="cursor-pointer overflow-hidden rounded-2xl shadow-lg mb-6">
+                <img src="{{ service.image1.url }}"
+                    class="w-full h-[420px] object-cover hover:scale-105 transition duration-500">
+            </div>
+
+            <!-- THUMBNAILS -->
+            <div class="grid grid-cols-4 gap-4">
+                {% if service.image2 %}
+                <img onclick="openGallery(1)" src="{{ service.image2.url }}" class="thumb">
+                {% endif %}
+                {% if service.image3 %}
+                <img onclick="openGallery(2)" src="{{ service.image3.url }}" class="thumb">
+                {% endif %}
+                {% if service.image4 %}
+                <img onclick="openGallery(3)" src="{{ service.image4.url }}" class="thumb">
+                {% endif %}
+                {% if service.image5 %}
+                <img onclick="openGallery(4)" src="{{ service.image5.url }}" class="thumb">
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- ================= DETAILS ================= -->
+        <div>
+            <h2 class="text-3xl font-bold text-blue mb-5">{{ service.title }}</h2>
+
+            {% if service.description %}
+            <p class="text-gray-600 leading-relaxed mb-8">
+                {{ service.description }}
+            </p>
+            {% endif %}
+
+            <!-- ICON DETAILS -->
+            <div class="grid sm:grid-cols-2 gap-6 text-sm mb-10">
+                {% if service.location %}
+                <div class="flex items-center gap-3 bg-white p-4 rounded-xl shadow">
+                    <i data-lucide="map-pin" class="w-5 h-5 text-yellow"></i>
+                    <span>{{ service.location }}</span>
+                </div>
+                {% endif %}
+
+                {% if service.client_name %}
+                <div class="flex items-center gap-3 bg-white p-4 rounded-xl shadow">
+                    <i data-lucide="user" class="w-5 h-5 text-yellow"></i>
+                    <span>{{ service.client_name }}</span>
+                </div>
+                {% endif %}
+
+                <div class="flex items-center gap-3 bg-white p-4 rounded-xl shadow">
+                    <i data-lucide="layers" class="w-5 h-5 text-yellow"></i>
+                    <span>{{ service.category.name }}</span>
+                </div>
+            </div>
+
+            <!-- BACK BUTTON -->
+            <a href="{% url 'service_category_detail' service.category.id %}"
+                class="inline-flex items-center gap-2 bg-blue text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 transition">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                Back to {{ service.category.name }}
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= FULLSCREEN GALLERY ================= -->
+<div id="galleryModal"
+    class="fixed inset-0 bg-black/90 hidden z-50 flex items-center justify-center">
+
+    <!-- CLOSE -->
+    <button onclick="closeGallery()" class="absolute top-6 right-6 text-white">
+        <i data-lucide="x" class="w-8 h-8"></i>
+    </button>
+
+    <!-- PREV -->
+    <button onclick="prevImage()" class="absolute left-6 text-white">
+        <i data-lucide="chevron-left" class="w-10 h-10"></i>
+    </button>
+
+    <!-- IMAGE -->
+    <img id="galleryImage" class="max-h-[90vh] max-w-[90vw] rounded-xl shadow-2xl">
+
+    <!-- NEXT -->
+    <button onclick="nextImage()" class="absolute right-6 text-white">
+        <i data-lucide="chevron-right" class="w-10 h-10"></i>
+    </button>
+</div>
+
+<!-- ================= STYLES ================= -->
+<style>
+.thumb {
+    cursor: pointer;
+    border-radius: 12px;
+    height: 90px;
+    width: 100%;
+    object-fit: cover;
+    transition: transform .3s;
+}
+.thumb:hover {
+    transform: scale(1.05);
+}
+</style>
+
+<!-- ================= SCRIPT ================= -->
+<script>
+const images = [
+    "{{ service.image1.url }}",
+    {% if service.image2 %}"{{ service.image2.url }}",{% endif %}
+    {% if service.image3 %}"{{ service.image3.url }}",{% endif %}
+    {% if service.image4 %}"{{ service.image4.url }}",{% endif %}
+    {% if service.image5 %}"{{ service.image5.url }}",{% endif %}
+];
+
+let currentIndex = 0;
+
+function openGallery(index) {
+    currentIndex = index;
+    document.getElementById('galleryModal').classList.remove('hidden');
+    document.getElementById('galleryImage').src = images[currentIndex];
+}
+
+function closeGallery() {
+    document.getElementById('galleryModal').classList.add('hidden');
+}
+
+function nextImage() {
+    currentIndex = (currentIndex + 1) % images.length;
+    document.getElementById('galleryImage').src = images[currentIndex];
+}
+
+function prevImage() {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    document.getElementById('galleryImage').src = images[currentIndex];
+}
+</script>
+
+{% endblock %}

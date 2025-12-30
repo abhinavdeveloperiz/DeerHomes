@@ -6,9 +6,7 @@
 {% block content %}
 
 <style>
-
     .main-image {
-        transition: all 0.4s ease-in-out;
         border-radius: 10px;
         overflow: hidden;
     }
@@ -17,7 +15,7 @@
         cursor: pointer;
         border-radius: 8px;
         overflow: hidden;
-        transition: all 0.3s ease-in-out;
+        transition: transform 0.3s ease, opacity 0.3s ease;
         opacity: 0.85;
     }
 
@@ -26,23 +24,15 @@
         opacity: 1;
     }
 
-    .thumbnail.active {
-        border: 2px solid #2563eb;
-        /* blue border */
-        opacity: 1;
-    }
-
-    /* Right Info Card */
     .info-card {
         background: #ffffff;
         border-radius: 12px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
         padding: 2rem;
     }
 
-    /* Responsive */
     @media (max-width: 768px) {
-        .main-image {
+        .main-image img {
             height: 300px;
         }
     }
@@ -51,61 +41,73 @@
 <section class="bg-gray-50 py-16 px-4 md:px-10 lg:px-20">
     <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-start">
 
-        <!-- LEFT SIDE - Image Gallery -->
-        <div  data-aos="fade-right">
-            <!-- Main Image -->
+        <!-- LEFT : IMAGE GALLERY -->
+        <div>
+
+            <!-- MAIN IMAGE (STATIC) -->
             {% if project.image1 %}
             <div class="main-image mb-4">
-                <img id="mainImage" src="{{ project.image1.url }}" alt="{{ project.title }}"
-                    class="w-full h-[400px] md:h-[500px] object-cover rounded-lg shadow-md">
+                <img src="{{ project.image1.url }}"
+                     alt="{{ project.title }}"
+                     onclick="openModal(0)"
+                     class="w-full h-[400px] md:h-[500px] object-cover rounded-lg shadow-md cursor-zoom-in">
             </div>
             {% endif %}
 
-            <!-- Thumbnail Grid -->
+            <!-- THUMBNAILS (OPEN POPUP ONLY) -->
             <div class="grid grid-cols-4 gap-3">
                 {% if project.image1 %}
-                <img src="{{ project.image1.url }}" class="thumbnail active w-full h-20 object-cover rounded-md"
-                    onclick="changeImage(this)">
+                <img src="{{ project.image1.url }}"
+                     class="thumbnail w-full h-20 object-cover"
+                     onclick="openModal(0)">
                 {% endif %}
                 {% if project.image2 %}
-                <img src="{{ project.image2.url }}" class="thumbnail w-full h-20 object-cover rounded-md"
-                    onclick="changeImage(this)">
+                <img src="{{ project.image2.url }}"
+                     class="thumbnail w-full h-20 object-cover"
+                     onclick="openModal(1)">
                 {% endif %}
                 {% if project.image3 %}
-                <img src="{{ project.image3.url }}" class="thumbnail w-full h-20 object-cover rounded-md"
-                    onclick="changeImage(this)">
+                <img src="{{ project.image3.url }}"
+                     class="thumbnail w-full h-20 object-cover"
+                     onclick="openModal(2)">
                 {% endif %}
                 {% if project.image4 %}
-                <img src="{{ project.image4.url }}" class="thumbnail w-full h-20 object-cover rounded-md"
-                    onclick="changeImage(this)">
+                <img src="{{ project.image4.url }}"
+                     class="thumbnail w-full h-20 object-cover"
+                     onclick="openModal(3)">
                 {% endif %}
                 {% if project.image5 %}
-                <img src="{{ project.image5.url }}" class="thumbnail w-full h-20 object-cover rounded-md"
-                    onclick="changeImage(this)">
+                <img src="{{ project.image5.url }}"
+                     class="thumbnail w-full h-20 object-cover"
+                     onclick="openModal(4)">
                 {% endif %}
             </div>
         </div>
 
-        <!-- RIGHT SIDE - Details -->
-        <div class="info-card p-8 bg-white rounded-2xl shadow-lg"  data-aos="fade-left">
-            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{{ project.title }}</h1>
+        <!-- RIGHT : DETAILS -->
+        <div class="info-card">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                {{ project.title }}
+            </h1>
 
             {% if project.type %}
-            <p class="text-blue-600 font-semibold uppercase tracking-wide mb-4">{{ project.get_type_display }}</p>
+            <p class="text-blue-600 font-semibold uppercase mb-4">
+                {{ project.get_type_display }}
+            </p>
             {% endif %}
 
-            <div class="space-y-2 text-gray-700">
+            <div class="space-y-3 text-gray-700">
                 {% if project.client_name %}
                 <p class="flex items-center gap-2">
                     <i data-lucide="user"></i>
-                    <span><strong>Client:</strong> {{ project.client_name }}</span>
+                    <strong>Client:</strong> {{ project.client_name }}
                 </p>
                 {% endif %}
 
                 {% if project.location %}
                 <p class="flex items-center gap-2">
                     <i data-lucide="map-pin"></i>
-                    <span><strong>Location:</strong> {{ project.location }}</span>
+                    <strong>Location:</strong> {{ project.location }}
                 </p>
                 {% endif %}
 
@@ -116,39 +118,24 @@
                 {% endif %}
             </div>
 
-            <!-- Optional Divider -->
             <div class="border-t mt-6 mb-4"></div>
 
-            <!-- Extra Project Info with Icons -->
-            <div class="flex flex-wrap items-center gap-6 text-sm text-gray-500">
+            <div class="flex flex-wrap gap-6 text-sm text-gray-500">
                 <div class="flex items-center gap-2">
                     <i data-lucide="calendar"></i>
-                    <span>Project ID: {{ project.id }}</span>
+                    Project ID: {{ project.id }}
                 </div>
-
-                {% if project.type %}
-                <div class="flex items-center gap-2">
-                    <i data-lucide="layers"></i>
-                    <span>{{ project.get_type_display }}</span>
-                </div>
-                {% endif %}
-
-                <!-- Additional icons -->
-                {% if project.image1 %}
                 <div class="flex items-center gap-2">
                     <i data-lucide="image"></i>
-                    <span>Images Available</span>
+                    Image Gallery
                 </div>
-                {% endif %}
-
-                <!-- Example placeholder for extra info -->
                 <div class="flex items-center gap-2">
                     <i data-lucide="award"></i>
-                    <span>Premium Design</span>
+                    Premium Quality
                 </div>
                 <div class="flex items-center gap-2">
                     <i data-lucide="users"></i>
-                    <span>Expert Team</span>
+                    Expert Team
                 </div>
             </div>
         </div>
@@ -156,17 +143,68 @@
     </div>
 </section>
 
+<!-- FULLSCREEN MODAL -->
+<div id="imageModal"
+     class="fixed inset-0 bg-black/90 hidden z-[9999] flex items-center justify-center">
+
+    <!-- CLOSE -->
+    <button onclick="closeModal()" class="absolute top-6 right-6 text-white">
+        <i data-lucide="x" class="w-8 h-8"></i>
+    </button>
+
+    <!-- PREV -->
+    <button onclick="prevImage()" class="absolute left-6 text-white">
+        <i data-lucide="chevron-left" class="w-12 h-12"></i>
+    </button>
+
+    <!-- IMAGE -->
+    <img id="modalImage"
+         class="max-h-[90vh] max-w-[90vw] object-contain rounded-xl shadow-2xl">
+
+    <!-- NEXT -->
+    <button onclick="nextImage()" class="absolute right-6 text-white">
+        <i data-lucide="chevron-right" class="w-12 h-12"></i>
+    </button>
+</div>
+
 <script>
-    // Image Switcher
-    function changeImage(el) {
-        const main = document.getElementById("mainImage");
-        const thumbnails = document.querySelectorAll(".thumbnail");
+    let images = [];
+    let currentIndex = 0;
 
-        thumbnails.forEach(t => t.classList.remove("active"));
-        el.classList.add("active");
+    {% if project.image1 %} images.push("{{ project.image1.url }}"); {% endif %}
+    {% if project.image2 %} images.push("{{ project.image2.url }}"); {% endif %}
+    {% if project.image3 %} images.push("{{ project.image3.url }}"); {% endif %}
+    {% if project.image4 %} images.push("{{ project.image4.url }}"); {% endif %}
+    {% if project.image5 %} images.push("{{ project.image5.url }}"); {% endif %}
 
-        main.src = el.src;
+    function openModal(index) {
+        currentIndex = index;
+        document.getElementById("modalImage").src = images[currentIndex];
+        document.getElementById("imageModal").classList.remove("hidden");
+        document.body.style.overflow = "hidden";
     }
+
+    function closeModal() {
+        document.getElementById("imageModal").classList.add("hidden");
+        document.body.style.overflow = "auto";
+    }
+
+    function nextImage() {
+        currentIndex = (currentIndex + 1) % images.length;
+        document.getElementById("modalImage").src = images[currentIndex];
+    }
+
+    function prevImage() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        document.getElementById("modalImage").src = images[currentIndex];
+    }
+
+    document.addEventListener("keydown", function(e) {
+        if (document.getElementById("imageModal").classList.contains("hidden")) return;
+        if (e.key === "ArrowRight") nextImage();
+        if (e.key === "ArrowLeft") prevImage();
+        if (e.key === "Escape") closeModal();
+    });
 </script>
 
 {% endblock %}

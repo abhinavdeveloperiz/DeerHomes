@@ -46,3 +46,30 @@ class Project(models.Model):
         return f"{self.title} - {self.type or 'No Type'}"
 
 
+
+
+
+class ServiceCategory(models.Model):
+    image = models.ImageField(upload_to='service_categories/')
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+
+class Service(models.Model):
+    category = models.ForeignKey( ServiceCategory, on_delete=models.CASCADE, related_name='services')
+
+    image1 = models.ImageField(upload_to='service_images/')
+    image2 = models.ImageField(upload_to='service_images/', blank=True, null=True)
+    image3 = models.ImageField(upload_to='service_images/', blank=True, null=True)
+    image4 = models.ImageField(upload_to='service_images/', blank=True, null=True)
+    image5 = models.ImageField(upload_to='service_images/', blank=True, null=True)
+
+    title = models.CharField(max_length=255, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    location = models.CharField(max_length=255, blank=True, null=True)
+    client_name = models.CharField(max_length=255, blank=True, null=True)
+
+    def __str__(self):
+        return self.title or f"Service ({self.category.name})"
