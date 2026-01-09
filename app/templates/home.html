@@ -5,111 +5,84 @@
 {% block content %}
 
 
-<style>
-    body,
-    html {
-        margin: 0;
-        padding: 0;
-        overflow-x: hidden;
-    }
 
-    /* Keyframe for smooth zoom in and out */
-    @keyframes zoomInOut {
+
+
+<style>
+    @keyframes smoothZoom {
         0% {
             transform: scale(1);
         }
 
-        50% {
-            transform: scale(1.08);
-        }
-
         100% {
-            transform: scale(1);
+            transform: scale(1.12);
         }
     }
 
-    /* Apply animation to carousel images */
-    #carousel .carousel-slide img {
-        animation: zoomInOut 8s ease-in-out infinite;
-        transform-origin: center;
-        will-change: transform;
+    .banner-img {
+        animation: smoothZoom 18s ease-in-out infinite alternate;
+        transition: opacity 2.5s ease-in-out;
+        will-change: transform, opacity;
     }
 </style>
 
 <section class="relative w-full h-[70vh] md:h-[80vh] overflow-hidden">
 
     <!-- Background Images -->
-    <img id="banner-bg1" src="{{ banner.image1.url }}" alt="Banner" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-100">
-    <img id="banner-bg2" src="{{ banner.image2.url }}" alt="Banner" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0">
+    <img id="bg1" src="{{ banner.image1.url }}"
+        class="banner-img absolute inset-0 w-full h-full object-cover opacity-100">
 
-    <!-- Overlay -->
+    <img id="bg2" src="{{ banner.image2.url }}"
+        class="banner-img absolute inset-0 w-full h-full object-cover opacity-0">
+
+    <!-- Dark Overlay -->
     <div class="absolute inset-0 bg-black/50 flex items-center justify-center px-6 md:px-20">
-        <div class="text-center max-w-3xl text-white">
+        <div class="text-center max-w-7xl text-white">
 
-            <!-- Typing Text -->
-            <h1 class="text-4xl md:text-6xl font-bold uppercase mb-4">
-                <span id="typing-text"></span>
-                <span class="border-r-4 border-white animate-pulse ml-1"></span>
+            <h1 class="text-5xl md:text-7xl mb-6 uppercase italic font-light ">
+                Happiness is designed
             </h1>
 
-            <!-- Contact Button -->
-            <a href="/contact"
-               class="inline-block mt-8 px-6 py-3 bg-blue rounded-full text-white font-semibold transition transform hover:scale-105">
-               Contact Us
-            </a>
+
+            <p class="text-white text-sm md:text-lg">Bettering lives through refined architecture </p>
+
+            <p class="text-white text-sm md:text-lg mt-6">Architectural consultants | Interior designers | builders and
+                developers</p>
         </div>
     </div>
 </section>
 
 <script>
-    // Typing Animation
-    const text = "Happiness is designing";
-    const typingElement = document.getElementById("typing-text");
-    let i = 0;
-
-    function typeWriter() {
-        if (i < text.length) {
-            typingElement.innerHTML += text.charAt(i);
-            i++;
-            setTimeout(typeWriter, 100);
-        }
-    }
-
-    window.addEventListener("load", typeWriter);
-
-    // Smooth Background Fade Animation
     const images = [
         "{{ banner.image1.url }}",
         "{{ banner.image2.url }}"
     ];
 
     let index = 0;
-    const bg1 = document.getElementById("banner-bg1");
-    const bg2 = document.getElementById("banner-bg2");
-    let showBg1 = true;
+    let showFirst = true;
+
+    const bg1 = document.getElementById("bg1");
+    const bg2 = document.getElementById("bg2");
 
     setInterval(() => {
-        showBg1 = !showBg1;
-        if (showBg1) {
-            bg1.src = images[index];
-            bg1.classList.remove("opacity-0");
-            bg1.classList.add("opacity-100");
-            bg2.classList.remove("opacity-100");
-            bg2.classList.add("opacity-0");
-        } else {
-            bg2.src = images[index];
-            bg2.classList.remove("opacity-0");
-            bg2.classList.add("opacity-100");
-            bg1.classList.remove("opacity-100");
-            bg1.classList.add("opacity-0");
-        }
         index = (index + 1) % images.length;
-    }, 3000); // every 3 seconds
+
+        if (showFirst) {
+            bg2.src = images[index];
+            bg2.style.opacity = "1";
+            bg1.style.opacity = "0";
+        } else {
+            bg1.src = images[index];
+            bg1.style.opacity = "1";
+            bg2.style.opacity = "0";
+        }
+
+        showFirst = !showFirst;
+    }, 6000);
 </script>
 
 
 
-<
 
 
 
@@ -121,8 +94,8 @@
 
         <!-- Heading -->
         <div class="text-center mb-14">
-            <h2 class="text-4xl font-semibold text-blue">
-                Our <span class="text-yellow font-semibold">Services</span>
+            <h2 class="text-4xl text-blue">
+                Our <span class="text-yellow">Services</span>
             </h2>
             <p class="text-gray-600 mt-4 max-w-3xl mx-auto">
                 Discover our expertise across architecture, interiors, and construction solutions.
@@ -130,16 +103,15 @@
         </div>
 
         <!-- Services Grid -->
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
 
             {% for category in services %}
             <a href="{% url 'service_category_detail' category.id %}"
-               class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition">
+                class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition">
 
                 <!-- Image -->
-                <img src="{{ category.image.url }}"
-                     alt="{{ category.name }}"
-                     class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110">
+                <img src="{{ category.image.url }}" alt="{{ category.name }}"
+                    class="w-full h-[50vh] object-cover transition-transform duration-500 group-hover:scale-110">
 
                 <!-- Overlay -->
                 <div class="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition"></div>
@@ -151,7 +123,7 @@
                     </h3>
 
                     <span class="inline-flex items-center gap-2 text-yellow font-semibold">
-                        View Services
+                        View 
                         <i data-lucide="arrow-right" class="w-4 h-4"></i>
                     </span>
                 </div>
@@ -184,8 +156,7 @@
 
             <!-- Right Side - Content -->
             <div class="order-1 md:order-2" data-aos="fade-left">
-                <h2 class="text-4xl font-semibold text-blue mb-6">About <span
-                        class="text-yellow font-semibold">Us</span></h2>
+                <h2 class="text-4xl text-blue mb-6">About <span class="text-yellow">Us</span></h2>
                 <div class="relative">
                     <p id="aboutText"
                         class="text-gray-600 mb-1 leading-relaxed text-justify line-clamp-5 transition-all duration-300">
@@ -295,15 +266,14 @@
 
         <!-- Left Section -->
         <div class="space-y-6 text-center lg:text-left">
-            <h2 class="text-4xl md:text-5xl font-semibold text-white leading-tight">
-                About <span class="text-yellow-400">Us</span>
-            </h2>
-            <p class="text-gray-200 text-lg leading-relaxed max-w-md mx-auto lg:mx-0">
-                We craft timeless interior designs that blend aesthetics and functionality, transforming spaces into
-                reflections of your lifestyle and brand identity.
+
+            <p class="text-gray-200 text-lg text-justify max-w-md mx-auto lg:mx-0">
+                DeerHomes is an architecture and design practice based in Kollam, Kerala,
+                working across residential, commercial, hospitality, and public projects.
             </p>
+
             <a href="/about"
-                class="inline-block border-2 border-white text-white px-8 py-3 font-semibold tracking-wider uppercase rounded-full hover:bg-white hover:text-black transition-all duration-300">
+                class="inline-block border-2 border-white text-white px-4 py-2 font-semibold tracking-wider uppercase rounded-full hover:bg-white hover:text-black transition-all duration-300">
                 Read More
             </a>
         </div>
@@ -323,9 +293,10 @@
                         </svg>
                     </div>
                     <h3 class="text-xl font-semibold text-[#3a4a38] mb-3">What We Offer</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Luxury interior design solutions tailored for offices, retail, hospitality, and lifestyle
-                        spaces.
+                    <p class="text-gray-600 text-justify">
+                        Comprehensive architectural and design services across residential,
+                        commercial, hospitality, interiors, public spaces, and construction projects.
+
                     </p>
                 </div>
 
@@ -347,9 +318,10 @@
                         </svg>
                     </div>
                     <h3 class="text-xl font-semibold text-[#3a4a38] mb-3">What We Do</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        We design and build world-class interiors that align with your brand, enhance functionality, and
-                        create lasting impressions.
+                    <p class="text-gray-600 text-justify">
+                        DeerHomes is an architecture and design studio based in Kollam, Kerala,
+                        specializing in residential, commercial, hospitality, and public architecture.
+
                     </p>
                 </div>
 
@@ -368,8 +340,7 @@
 <section class="mx-6 my-12 text-center">
     <!-- Heading -->
     <div class="mb-12">
-        <h2 class="text-3xl md:text-4xl font-semi bold text-blue">How We <span
-                class="text-yellow font-semibold">Work</span></h2>
+        <h2 class="text-3xl md:text-4xl text-blue">How We <span class="text-yellow">Work</span></h2>
         <p class="text-gray-600 mt-2 max-w-2xl mx-auto">
             We understand your vision, design with purpose, and deliver interiors that inspire.
         </p>
@@ -419,8 +390,8 @@
 
 <section class="py-16 px-4 bg-white text-center">
     <div class="max-w-7xl mx-auto">
-        <h2 class="text-4xl font-semibold text-blue">
-            Our <span class="text-yellow font-semibold">Projects</span>
+        <h2 class="text-4xl text-blue">
+            Our <span class="text-yellow">Projects</span>
         </h2>
         <p class="text-gray-600 mb-12 max-w-3xl mx-auto">
             A glimpse into our portfolio — where design meets excellence.
@@ -437,6 +408,8 @@
 
                 <div class="absolute bottom-0 left-0 p-5 translate-y-10 group-hover:translate-y-0 transition text-left">
                     <h3 class="text-white text-xl font-semibold">{{ p.title }}</h3>
+                    <h3 class="text-white text-lg text-yellow font-semibold mb-4">{{ p.type }}</h3>
+
                     <div class="flex items-center gap-2 text-yellow mt-2">
                         <i data-lucide="arrow-right" class="w-5 h-5"></i>
                         <span class="text-sm font-medium">View Details</span>

@@ -46,11 +46,7 @@
                         {{ service.title }}
                     </h3>
 
-                    {% if service.location %}
-                    <p class="text-sm text-gray-200 mb-2">
-                        {{ service.location }}
-                    </p>
-                    {% endif %}
+                   
 
                     <span class="inline-flex items-center gap-2 text-yellow font-semibold">
                         View Details
@@ -60,10 +56,28 @@
 
             </a>
             {% empty %}
-            <p class="text-center text-gray-500 col-span-full">
-                No services available under this category.
-            </p>
-            {% endfor %}
+<div class="col-span-full flex justify-center">
+    <div class="max-w-xl w-full bg-gray-50 border border-gray-200 rounded-2xl p-10 text-center shadow-sm">
+
+        <h3 class="text-2xl font-light uppercase tracking-widest text-gray-800 mb-6">
+            Let’s Start Together
+        </h3>
+
+        <!-- <p class="text-gray-600 leading-relaxed mb-8">
+            This service category is currently being curated.
+            For tailored architectural or design enquiries, connect with our team.
+        </p> -->
+
+        <a href="{% url 'contact' %}"
+           class="inline-flex items-center gap-3 px-4 py-2 border border-gray-800 text-gray-800 uppercase tracking-widest text-sm transition-all duration-300 hover:bg-gray-800 hover:text-white rounded-full">
+            Contact Us
+            <span class="text-lg">→</span>
+        </a>
+
+    </div>
+</div>
+{% endfor %}
+
         </div>
 
     </div>

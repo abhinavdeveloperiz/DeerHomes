@@ -58,32 +58,11 @@
             <h2 class="text-3xl font-bold text-blue mb-5">{{ service.title }}</h2>
 
             {% if service.description %}
-            <p class="text-gray-600 leading-relaxed mb-8">
+            <p class="text-gray-600 leading-relaxed mb-8 text-justify">
                 {{ service.description }}
             </p>
             {% endif %}
 
-            <!-- ICON DETAILS -->
-            <div class="grid sm:grid-cols-2 gap-6 text-sm mb-10">
-                {% if service.location %}
-                <div class="flex items-center gap-3 bg-white p-4 rounded-xl shadow">
-                    <i data-lucide="map-pin" class="w-5 h-5 text-yellow"></i>
-                    <span>{{ service.location }}</span>
-                </div>
-                {% endif %}
-
-                {% if service.client_name %}
-                <div class="flex items-center gap-3 bg-white p-4 rounded-xl shadow">
-                    <i data-lucide="user" class="w-5 h-5 text-yellow"></i>
-                    <span>{{ service.client_name }}</span>
-                </div>
-                {% endif %}
-
-                <div class="flex items-center gap-3 bg-white p-4 rounded-xl shadow">
-                    <i data-lucide="layers" class="w-5 h-5 text-yellow"></i>
-                    <span>{{ service.category.name }}</span>
-                </div>
-            </div>
 
             <!-- BACK BUTTON -->
             <a href="{% url 'service_category_detail' service.category.id %}"

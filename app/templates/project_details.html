@@ -6,164 +6,150 @@
 {% block content %}
 
 <style>
-    .main-image {
-        border-radius: 10px;
-        overflow: hidden;
+    .editorial-panel {
+        background: #f7f6f2;
+        padding: 3rem;
+        height: 100%;
+    }
+
+    .editorial-panel h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: 2rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 0.6rem;
+    }
+
+    .editorial-panel h4 {
+        font-size: 0.8rem;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: #777;
+        margin-bottom: 1.4rem;
+    }
+
+    .editorial-panel p {
+        line-height: 1.8;
+        color: #444;
+        margin-bottom: 0.8rem;
+    }
+
+    .hero-image img {
+        height: 100%;
+        object-fit: cover;
+        border-radius: 8px;
     }
 
     .thumbnail {
         cursor: pointer;
-        border-radius: 8px;
-        overflow: hidden;
         transition: transform 0.3s ease, opacity 0.3s ease;
         opacity: 0.85;
+        border-radius: 6px;
     }
 
     .thumbnail:hover {
         transform: scale(1.05);
         opacity: 1;
     }
-
-    .info-card {
-        background: #ffffff;
-        border-radius: 12px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-        padding: 2rem;
-    }
-
-    @media (max-width: 768px) {
-        .main-image img {
-            height: 300px;
-        }
-    }
 </style>
 
-<section class="bg-gray-50 py-16 px-4 md:px-10 lg:px-20">
-    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-start">
+<!-- TOP SECTION -->
+<section class="bg-gray-0 py-16 md:px-12 lg:px-20">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-10">
 
-        <!-- LEFT : IMAGE GALLERY -->
-        <div>
+        <!-- LEFT : PROJECT INFO -->
+        <div class="editorial-panel">
 
-            <!-- MAIN IMAGE (STATIC) -->
-            {% if project.image1 %}
-            <div class="main-image mb-4">
-                <img src="{{ project.image1.url }}"
-                     alt="{{ project.title }}"
-                     onclick="openModal(0)"
-                     class="w-full h-[400px] md:h-[500px] object-cover rounded-lg shadow-md cursor-zoom-in">
-            </div>
+            <!-- PROJECT TITLE -->
+            <h2>{{ project.title }}</h2>
+
+            <!-- PROJECT TYPE -->
+            <h4>
+                {{ project.get_type_display }}
+            </h4>
+
+            <!-- META -->
+            {% if project.location %}
+            <p><strong>Location:</strong> {{ project.location }}</p>
             {% endif %}
 
-            <!-- THUMBNAILS (OPEN POPUP ONLY) -->
-            <div class="grid grid-cols-4 gap-3">
-                {% if project.image1 %}
-                <img src="{{ project.image1.url }}"
-                     class="thumbnail w-full h-20 object-cover"
-                     onclick="openModal(0)">
-                {% endif %}
-                {% if project.image2 %}
-                <img src="{{ project.image2.url }}"
-                     class="thumbnail w-full h-20 object-cover"
-                     onclick="openModal(1)">
-                {% endif %}
-                {% if project.image3 %}
-                <img src="{{ project.image3.url }}"
-                     class="thumbnail w-full h-20 object-cover"
-                     onclick="openModal(2)">
-                {% endif %}
-                {% if project.image4 %}
-                <img src="{{ project.image4.url }}"
-                     class="thumbnail w-full h-20 object-cover"
-                     onclick="openModal(3)">
-                {% endif %}
-                {% if project.image5 %}
-                <img src="{{ project.image5.url }}"
-                     class="thumbnail w-full h-20 object-cover"
-                     onclick="openModal(4)">
-                {% endif %}
-            </div>
-        </div>
+            {% if project.client_name %}
+            <p><strong>Client:</strong> {{ project.client_name }}</p>
+            {% endif %}
 
-        <!-- RIGHT : DETAILS -->
-        <div class="info-card">
-            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                {{ project.title }}
-            </h1>
-
-            {% if project.type %}
-            <p class="text-blue-600 font-semibold uppercase mb-4">
-                {{ project.get_type_display }}
+            <!-- DESCRIPTION -->
+            {% if project.description %}
+            <p class="mt-4 text-justify">
+                {{ project.description }}
+            </p>
+            {% else %}
+            <p class="mt-4 italic text-gray-500">
+                Project details will be updated soon.
             </p>
             {% endif %}
 
-            <div class="space-y-3 text-gray-700">
-                {% if project.client_name %}
-                <p class="flex items-center gap-2">
-                    <i data-lucide="user"></i>
-                    <strong>Client:</strong> {{ project.client_name }}
-                </p>
-                {% endif %}
+        </div>
 
-                {% if project.location %}
-                <p class="flex items-center gap-2">
-                    <i data-lucide="map-pin"></i>
-                    <strong>Location:</strong> {{ project.location }}
-                </p>
-                {% endif %}
-
-                {% if project.description %}
-                <p class="text-gray-600 leading-relaxed mt-4 text-justify">
-                    {{ project.description }}
-                </p>
-                {% endif %}
-            </div>
-
-            <div class="border-t mt-6 mb-4"></div>
-
-            <div class="flex flex-wrap gap-6 text-sm text-gray-500">
-                <div class="flex items-center gap-2">
-                    <i data-lucide="calendar"></i>
-                    Project ID: {{ project.id }}
-                </div>
-                <div class="flex items-center gap-2">
-                    <i data-lucide="image"></i>
-                    Image Gallery
-                </div>
-                <div class="flex items-center gap-2">
-                    <i data-lucide="award"></i>
-                    Premium Quality
-                </div>
-                <div class="flex items-center gap-2">
-                    <i data-lucide="users"></i>
-                    Expert Team
-                </div>
-            </div>
+        <!-- RIGHT : HERO IMAGE -->
+        <div class="hero-image hidden sm:block">
+            {% if project.image1 %}
+            <img src="{{ project.image1.url }}" alt="{{ project.title }}" onclick="openModal(0)"
+                class="w-full h-[420px] md:h-[520px] px-4 md:px-0 shadow-lg cursor-zoom-in">
+            {% endif %}
         </div>
 
     </div>
 </section>
 
+<!-- IMAGE GALLERY -->
+<section class="bg-white py-16 px-4 md:px-12 lg:px-20">
+    <div class="max-w-7xl mx-auto grid grid-cols-12 gap-6">
+
+        {% if project.image1 %}
+        <!-- Large hero image -->
+        <img src="{{ project.image1.url }}" onclick="openModal(0)"
+            class="thumbnail col-span-12 md:col-span-6 row-span-2 h-[500px] w-full object-cover">
+        {% endif %}
+
+        {% if project.image2 %}
+        <img src="{{ project.image2.url }}" onclick="openModal(1)"
+            class="thumbnail col-span-6 md:col-span-3 h-[240px] w-full object-cover">
+        {% endif %}
+
+        {% if project.image3 %}
+        <img src="{{ project.image3.url }}" onclick="openModal(2)"
+            class="thumbnail col-span-6 md:col-span-3 h-[240px] w-full object-cover">
+        {% endif %}
+
+        {% if project.image4 %}
+        <img src="{{ project.image4.url }}" onclick="openModal(3)"
+            class="thumbnail col-span-6 md:col-span-3 h-[240px] w-full object-cover">
+        {% endif %}
+
+        {% if project.image5 %}
+        <img src="{{ project.image5.url }}" onclick="openModal(4)"
+            class="thumbnail col-span-6 md:col-span-3 h-[240px] w-full object-cover">
+        {% endif %}
+
+    </div>
+</section>
+
+
 <!-- FULLSCREEN MODAL -->
-<div id="imageModal"
-     class="fixed inset-0 bg-black/90 hidden z-[9999] flex items-center justify-center">
+<div id="imageModal" class="fixed inset-0 bg-black/90 hidden z-[9999] flex items-center justify-center">
 
-    <!-- CLOSE -->
     <button onclick="closeModal()" class="absolute top-6 right-6 text-white">
-        <i data-lucide="x" class="w-8 h-8"></i>
+        ✕
     </button>
 
-    <!-- PREV -->
-    <button onclick="prevImage()" class="absolute left-6 text-white">
-        <i data-lucide="chevron-left" class="w-12 h-12"></i>
+    <button onclick="prevImage()" class="absolute left-6 text-white text-4xl">
+        ‹
     </button>
 
-    <!-- IMAGE -->
-    <img id="modalImage"
-         class="max-h-[90vh] max-w-[90vw] object-contain rounded-xl shadow-2xl">
+    <img id="modalImage" class="max-h-[90vh] max-w-[90vw] object-contain rounded-xl shadow-2xl">
 
-    <!-- NEXT -->
-    <button onclick="nextImage()" class="absolute right-6 text-white">
-        <i data-lucide="chevron-right" class="w-12 h-12"></i>
+    <button onclick="nextImage()" class="absolute right-6 text-white text-4xl">
+        ›
     </button>
 </div>
 
@@ -199,7 +185,7 @@
         document.getElementById("modalImage").src = images[currentIndex];
     }
 
-    document.addEventListener("keydown", function(e) {
+    document.addEventListener("keydown", function (e) {
         if (document.getElementById("imageModal").classList.contains("hidden")) return;
         if (e.key === "ArrowRight") nextImage();
         if (e.key === "ArrowLeft") prevImage();
