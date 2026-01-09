@@ -155,22 +155,8 @@ JAZZMIN_SETTINGS = {
     "login_logo": "image/logo.jpg",
     "login_logo_dark": "image/logo.jpg",
     
-    # Icons
-    "icons": {
-        "auth": "fas fa-users-cog",
-        "auth.user": "fas fa-user",
-        "auth.Group": "fas fa-users",
-        "app.gallery": "fas fa-images",
-        "app.Project": "fas fa-building",
-    },
-    
-    # UI Customizer
-    "show_ui_builder": True,
-    
-    # Custom CSS/JS for better logo display
-    "custom_css": None,
-    "custom_js": None,
-    
+   
+   
     # Brand name and logo position
     "brand_colour": "navbar-cyan",
     "brand_small_text": False,

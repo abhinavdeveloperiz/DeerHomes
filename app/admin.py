@@ -23,11 +23,7 @@ class ImagePreviewMixin:
     image_preview.short_description = "Preview"
 
 
-# -------------------------
 
-# -------------------------
-# IMAGE PREVIEW MIXIN
-# -------------------------
 class ImagePreviewbanner:
     def preview(self, image):
         if image:
