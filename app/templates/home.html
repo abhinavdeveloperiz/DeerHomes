@@ -39,7 +39,7 @@
     <div class="absolute inset-0 bg-black/50 flex items-center justify-center px-6 md:px-20">
         <div class="text-center max-w-7xl text-white">
 
-            <h1 class="text-5xl md:text-7xl mb-6 uppercase italic font-light ">
+            <h1 class="text-5xl md:text-7xl mb-6 italic font-light ">
                 Happiness is designed
             </h1>
 
@@ -89,7 +89,7 @@
 
 
 <!-- ================= SERVICES SECTION ================= -->
-<section class="py-20 px-4 bg-gray-50">
+<section class="py-20 px-4 bg-gray-800">
     <div class="max-w-7xl mx-auto">
 
         <!-- Heading -->
@@ -97,13 +97,13 @@
             <h2 class="text-4xl text-blue">
                 Our <span class="text-yellow">Services</span>
             </h2>
-            <p class="text-gray-600 mt-4 max-w-3xl mx-auto">
+            <p class="text-gray-100 mt-4 max-w-3xl mx-auto">
                 Discover our expertise across architecture, interiors, and construction solutions.
             </p>
         </div>
 
         <!-- Services Grid -->
-        <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+        <div class="grid grid-cols-1 gap-8">
 
             {% for category in services %}
             <a href="{% url 'service_category_detail' category.id %}"
@@ -111,14 +111,14 @@
 
                 <!-- Image -->
                 <img src="{{ category.image.url }}" alt="{{ category.name }}"
-                    class="w-full h-[60vh] object-cover transition-transform duration-500 group-hover:scale-110">
+                    class="w-full h-[70vh] object-cover transition-transform duration-500 group-hover:scale-110">
 
                 <!-- Overlay -->
                 <div class="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition"></div>
 
                 <!-- Content -->
                 <div class="absolute bottom-0 left-0 p-6 text-white w-full">
-                    <h3 class="text-2xl font-bold mb-2">
+                    <h3 class="text-xl md:text-5xl font-bold mb-2">
                         {{ category.name }}
                     </h3>
 
