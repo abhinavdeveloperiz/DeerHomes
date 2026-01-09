@@ -24,7 +24,7 @@
       {% for p in projects %}
       <a href="{% url 'project_details' p.id %}" class="relative group overflow-hidden rounded-lg shadow-lg" data-aos="fade-up-right">
         <!-- Project Image -->
-        <img  src="{{ p.image1.url }}" alt="{{ p.title }}" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+        <img  src="{{ p.image1.url }}" alt="{{ p.title }}" class="w-full h-[60vh] object-cover transition-transform duration-500 group-hover:scale-110">
 
         <!-- Overlay -->
         <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition duration-500"></div>
