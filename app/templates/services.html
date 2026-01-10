@@ -27,53 +27,58 @@
     </div>
 </section>
 
-<!-- ================= SERVICE CATEGORIES ================= -->
-<section class="relative py-16 px-4 bg-fixed bg-center bg-cover"
-    style="background-image: url('/static/property/28.jpg');">
 
-    <!-- Dark Overlay -->
-    <div class="absolute inset-0 bg-black/50"></div>
 
-    <div class="max-w-7xl mx-auto relative z-10">
 
+<!-- ================= SERVICES SECTION ================= -->
+<section class="py-20 px-4 bg-gray-800">
+    <div class="max-w-7xl mx-auto">
+
+        <!-- Heading -->
         <div class="text-center mb-14">
-            <h2 class="text-4xl text-white">
-                Services & <span class="text-yellow">Solutions</span>
+            <h2 class="text-4xl text-blue">
+                Our <span class="text-yellow">Services</span>
             </h2>
-            <p class="text-gray-200 mt-4 max-w-3xl mx-auto">
-                Explore our expertise across architecture, interiors, and construction.
+            <p class="text-gray-100 mt-4 max-w-3xl mx-auto">
+                Discover our expertise across architecture, interiors, and construction solutions.
             </p>
         </div>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+        <!-- Services Grid -->
+        <div class="grid grid-cols-1 gap-6 md:gap-8">
+
             {% for category in service_categories %}
             <a href="{% url 'service_category_detail' category.id %}"
-                class="group relative rounded-2xl overflow-hidden shadow-lg bg-white">
+                class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition">
 
                 <!-- Image -->
                 <img src="{{ category.image.url }}" alt="{{ category.name }}"
-                    class="w-full h-[60vh] object-cover transition-transform duration-500 group-hover:scale-110">
+                    class="w-full h-[60vh] md:h-[70vh] object-cover transition-transform duration-500 group-hover:scale-110">
 
                 <!-- Overlay -->
-                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/60 transition"></div>
+                <div class="absolute inset-0 bg-black/30 group-hover:bg-black/60 transition"></div>
 
-                <!-- Text -->
-                <div class="absolute bottom-0 left-0 p-6 text-white">
-                    <h3 class="text-2xl font-bold mb-2">
+                <!-- Content (Centered) -->
+                <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-4 text-white">
+                    <h3 class="text-2xl sm:text-3xl md:text-5xl font-bold mb-3">
                         {{ category.name }}
                     </h3>
-                    <span class="inline-flex items-center gap-2 text-yellow font-semibold">
-                        View 
+
+                    <span class="inline-flex items-center gap-2 text-yellow font-semibold text-sm sm:text-base">
+                        View
                         <i data-lucide="arrow-right" class="w-4 h-4"></i>
                     </span>
                 </div>
+
             </a>
             {% empty %}
-            <p class="text-center text-gray-300 col-span-full">
-                No services available at the moment.
+            <p class="col-span-full text-center text-gray-500">
+                No services available.
             </p>
             {% endfor %}
+
         </div>
+
     </div>
 </section>
 
