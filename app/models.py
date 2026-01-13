@@ -52,6 +52,8 @@ class Project(models.Model):
 class ServiceCategory(models.Model):
     image = models.ImageField(upload_to='service_categories/')
     name = models.CharField(max_length=255)
+    description = models.TextField(blank=True, null=True)
+
 
     def __str__(self):
         return self.name
