@@ -65,5 +65,9 @@ def Project_details(request,pk):
     }
     return render(request, 'project_details.html',context)
 
+
+def blog(request):
+    return render(request, 'blog.html')
+
 def contact(request):
     return render(request, 'contact.html')

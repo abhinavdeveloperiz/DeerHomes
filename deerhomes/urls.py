@@ -13,6 +13,7 @@ urlpatterns = [
     path('service/<int:id>/', views.service_detail, name='service_detail'),
     path('management/', views.management, name='management'),
     path('projects/', views.projects, name='projects'),
+    path('blog/', views.blog, name='blog'),
     path('contact/', views.contact, name='contact'),
     path('project/<int:pk>/', views.Project_details, name='project_details'),
     
