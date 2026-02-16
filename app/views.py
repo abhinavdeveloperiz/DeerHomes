@@ -1,14 +1,12 @@
 from django.shortcuts import render,redirect,get_object_or_404
-from .models import gallery, Project,BannerHome,ServiceCategory,Service,Blogs
+from .models import  Project,BannerHome,ServiceCategory,Service,Blogs,Directors,TeamMember
 # Create your views here.
 
 def home(request):
-    image=gallery.objects.order_by('-id')[:8]
     banner=BannerHome.objects.last()
     services=ServiceCategory.objects.prefetch_related('services')
     projects=Project.objects.order_by('-id')[:6]
     context={
-        'image':image,
         'banner':banner,
         'services':services,
         'projects':projects
@@ -17,7 +15,13 @@ def home(request):
 
 
 def about(request):
-    return render(request, 'about.html')
+    team_image = TeamMember.objects.first()
+    directors = Directors.objects.all()
+    context = {
+        'team': team_image,
+        'directors': directors
+    }
+    return render(request, 'about.html', context)
 
 def services(request):
     projects = Project.objects.order_by('-id')[:6]
@@ -41,7 +45,7 @@ def service_category_detail(request, category_id):
 
 def service_detail(request, id):
     service = get_object_or_404(Service, id=id)
-
+   
     context = {
         'service': service
     }
@@ -49,7 +53,12 @@ def service_detail(request, id):
 
 
 def management(request):
-    return render(request, 'management.html')
+    team_image = TeamMember.objects.first()
+
+    context = {
+        'team': team_image
+    }
+    return render(request, 'management.html',context)
 
 def projects(request):
     projects = Project.objects.order_by('-id')

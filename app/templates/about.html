@@ -7,7 +7,7 @@
     section {
         overflow-x: hidden;
     }
-    
+
     [data-aos] {
         overflow-x: hidden;
     }
@@ -31,12 +31,11 @@
 
 <!-- About Section -->
 <section class="py-16 px-4 bg-gray-800">
-    <div class="max-w-6xl mx-auto grid md:grid-cols-1 gap-12 items-center" >
+    <div class="max-w-6xl mx-auto grid md:grid-cols-1 gap-12 items-center">
         <!-- Left Side - Image -->
         <div class="w-auto" data-aos="fade-right">
             <div class="h-[200px] md:h-[500px] overflow-hidden rounded-lg shadow-xl">
-                <img src="https://images.livemint.com/img/2022/10/15/1600x900/TeamIndia_1665814845460_1665814845700_1665814845700.jpg"
-                    alt="Team collaboration"
+                <img src="{{ team.photo.url }}" alt="Team collaboration"
                     class="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105">
             </div>
         </div>
@@ -45,14 +44,19 @@
         <div data-aos="fade-left">
             <h2 class="text-4xl text-yellow mb-6">About <span class="text-yellow">Us</span></h2>
             <p class="text-white mb-4 text-justify leading-relaxed">
-                deerhomes® is a team of highly skilled professionals including Architects, Interior designers, and Engineers sharing
-                a deep passion for excellence, blending creativity with technical precision. We believe we can make life better for
+                deerhomes® is a team of highly skilled professionals including Architects, Interior designers, and
+                Engineers sharing
+                a deep passion for excellence, blending creativity with technical precision. We believe we can make life
+                better for
                 our clients through design. A well-designed space enhances the quality of everyday living.
             </p>
             <p class="text-white mb-4 text-justify leading-relaxed">
-                By creating sustainable building modules using materials with a reduced carbon footprint, we aim to create better
-                building systems for future generations. Our versatile design philosophy ranges from contemporary minimalistic
-                designs to classical and traditional styles. Top-notch planning ensures efficiency and cost-effectiveness
+                By creating sustainable building modules using materials with a reduced carbon footprint, we aim to
+                create better
+                building systems for future generations. Our versatile design philosophy ranges from contemporary
+                minimalistic
+                designs to classical and traditional styles. Top-notch planning ensures efficiency and
+                cost-effectiveness
                 in all major projects.
             </p>
         </div>
@@ -60,7 +64,8 @@
 </section>
 
 <!-- Mission & Vision Section -->
-<section class="relative w-full bg-fixed bg-center bg-cover py-20 " style="background-image: url('/static/property/12.jpg');">
+<section class="relative w-full bg-fixed bg-center bg-cover py-20 "
+    style="background-image: url('/static/property/12.jpg');">
     <div class="absolute inset-0 bg-black/50"></div>
     <div class="relative max-w-6xl mx-auto text-center text-black px-4">
         <h2 class="text-4xl font-semibold mb-6 text-white">Our Mission & Vision</h2>
@@ -68,13 +73,15 @@
             <div class="bg-white text-black px-6 py-6 rounded-lg" data-aos="fade-right">
                 <h3 class="text-2xl font-bold mb-2">Our Mission</h3>
                 <p class="leading-relaxed">
-                    To deliver sustainable, innovative, and aesthetically pleasing designs that enrich our clients’ lives and communities.
+                    To deliver sustainable, innovative, and aesthetically pleasing designs that enrich our clients’
+                    lives and communities.
                 </p>
             </div>
             <div class="bg-white text-black px-6 py-6 rounded-lg" data-aos="fade-left">
                 <h3 class="text-2xl font-bold mb-2">Our Vision</h3>
                 <p class="leading-relaxed">
-                    To be a leading design firm recognized for creativity, integrity, and exceptional client experiences.
+                    To be a leading design firm recognized for creativity, integrity, and exceptional client
+                    experiences.
                 </p>
             </div>
         </div>
@@ -91,12 +98,14 @@
                 <h3 class="font-semibold text-lg mb-2">Passion</h3>
                 <p class="text-gray-600">We pour our hearts into every project, ensuring excellence.</p>
             </div>
-            <div class="bg-gray-50 p-6 rounded-lg shadow hover:shadow-lg transition-shadow" data-aos="fade-down" data-aos-delay="200">
+            <div class="bg-gray-50 p-6 rounded-lg shadow hover:shadow-lg transition-shadow" data-aos="fade-down"
+                data-aos-delay="200">
                 <i data-lucide="users" class="w-8 h-8 text-blue-500 mb-3"></i>
                 <h3 class="font-semibold text-lg mb-2">Teamwork</h3>
                 <p class="text-gray-600">Collaboration and mutual respect guide every endeavor.</p>
             </div>
-            <div class="bg-gray-50 p-6 rounded-lg shadow hover:shadow-lg transition-shadow" data-aos="fade-down" data-aos-delay="400">
+            <div class="bg-gray-50 p-6 rounded-lg shadow hover:shadow-lg transition-shadow" data-aos="fade-down"
+                data-aos-delay="400">
                 <i data-lucide="star" class="w-8 h-8 text-yellow-500 mb-3"></i>
                 <h3 class="font-semibold text-lg mb-2">Excellence</h3>
                 <p class="text-gray-600">Delivering top-quality designs with attention to detail.</p>
@@ -121,46 +130,24 @@
         <!-- Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-10">
 
+            {% for d in directors %}
             <!-- Director Card -->
-            <div class="bg-white p-8 text-center transition duration-300"
-                 data-aos="fade-up">
+            <!-- Director Card -->
+            <div class="bg-white p-8 text-center transition duration-300" data-aos="fade-up">
 
                 <!-- Rounded Image -->
                 <div class="w-40 h-40 mx-auto mb-6 rounded-full overflow-hidden ring-4 ring-gray-100">
-                    <img
-                        src="https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671122.jpg"
-                        alt="John Doe"
-                        class="w-full h-full object-cover"
-                    >
+                    <img src="{{ d.photo.url }}" alt="{{ d.name }}" class="w-full h-full object-cover">
                 </div>
 
                 <h3 class="text-xl font-semibold text-gray-900">
-                    John Doe
+                    {{ d.name }}
                 </h3>
-                <p class="text-gray-600 mt-1">
-                    Lead Architect
-                </p>
+
             </div>
 
-            <!-- Director Card -->
-            <div class="bg-white p-8 text-center transition duration-300"
-                 data-aos="fade-up" data-aos-delay="100">
+            {% endfor %}
 
-                <div class="w-40 h-40 mx-auto mb-6 rounded-full overflow-hidden ring-4 ring-gray-100">
-                    <img
-                        src="https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671122.jpg"
-                        alt="John Doe"
-                        class="w-full h-full object-cover"
-                    >
-                </div>
-
-                <h3 class="text-xl font-semibold text-gray-900">
-                    John Doe
-                </h3>
-                <p class="text-gray-600 mt-1">
-                    Lead Architect
-                </p>
-            </div>
 
         </div>
     </div>
@@ -181,7 +168,7 @@
     </div>
 
     <div class="grid grid-cols-2 md:grid-cols-3 gap-12 max-w-6xl mx-auto">
-        <div class="flex flex-col items-center" data-aos="fade-down" >
+        <div class="flex flex-col items-center" data-aos="fade-down">
             <div class="text-gray-400 text-6xl font-bold mb-4">01</div>
             <div class="text-green-700 text-4xl mb-4">
                 <i data-lucide="lightbulb"></i>
