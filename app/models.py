@@ -73,3 +73,16 @@ class Service(models.Model):
 
     def __str__(self):
         return self.title or f"Service ({self.category.name})"
+
+
+class Blogs(models.Model):
+    image = models.ImageField(upload_to="blogs/", blank=True, null=True)
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+
+    class Meta:
+        verbose_name = "Blog"
+        verbose_name_plural = "Blogs"
+
+    def __str__(self):
+        return self.title

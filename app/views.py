@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect,get_object_or_404
-from .models import gallery, Project,BannerHome,ServiceCategory,Service
+from .models import gallery, Project,BannerHome,ServiceCategory,Service,Blogs
 # Create your views here.
 
 def home(request):
@@ -67,7 +67,12 @@ def Project_details(request,pk):
 
 
 def blog(request):
-    return render(request, 'blog.html')
+
+    blogs = Blogs.objects.all().order_by("-id")
+    context = {
+        "blogs":blogs
+    }
+    return render(request, 'blog.html', context)
 
 def contact(request):
     return render(request, 'contact.html')

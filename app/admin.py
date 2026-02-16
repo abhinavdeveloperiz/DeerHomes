@@ -5,7 +5,8 @@ from .models import (
     gallery,
     Project,
     ServiceCategory,
-    Service
+    Service,
+    Blogs,
 )
 
 # -------------------------
@@ -159,6 +160,16 @@ class ServiceCategoryAdmin(admin.ModelAdmin):
     image_preview.short_description = "Category Image"
 
 
+@admin.register(Blogs)
+class BlogAdmin(admin.ModelAdmin):
+    list_display = ('title','description','image_preview')
+    search_fields = ('title',)
+    def image_preview(self, obj):
+        return format_html(
+            '<img src="{}" style="height:60px;border-radius:6px;" />',
+            obj.image.url
+        )
+    image_preview.short_description = "Category Image"
 # -------------------------
 # SERVICE ADMIN (STANDALONE)
 # -------------------------

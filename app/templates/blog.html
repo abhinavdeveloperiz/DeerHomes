@@ -174,94 +174,23 @@
         <!-- Blog Cards -->
         <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
 
+
+            {% for b in blogs %}
             <!-- Blog Card 1 -->
             <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden group">
-                <img src="/static/property/1.jpg" alt="Modern Villa Design"
+                <img src="{{b.image.url}}" alt="Modern Villa Design"
                     class="w-full h-56 object-cover group-hover:scale-105 transition duration-500" />
                 <div class="p-6 text-left">
                     <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                        Modern Villa in Trivandrum
+                        {{b.title}}
                     </h3>
                     <p class="text-gray-600 text-sm mb-4">
-                        A contemporary residence balancing clean geometry, light, and tropical comfort.
+                        {{b.description}}
                     </p>
 
                 </div>
             </div>
-
-            <!-- Blog Card 2 -->
-            <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden group">
-                <img src="/static/property/10.jpg" alt="Luxury Interior Design"
-                    class="w-full h-56 object-cover group-hover:scale-105 transition duration-500" />
-                <div class="p-6 text-left">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                        Luxury Interiors with Indian Roots
-                    </h3>
-                    <p class="text-gray-600 text-sm mb-4">
-                        How classical elements blend seamlessly with modern interior planning.
-                    </p>
-
-                </div>
-            </div>
-
-            <!-- Blog Card 3 -->
-            <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden group">
-                <img src="/static/property/3.jpg" alt="Courtyard House Design"
-                    class="w-full h-56 object-cover group-hover:scale-105 transition duration-500" />
-                <div class="p-6 text-left">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                        Courtyard Homes for Modern Living
-                    </h3>
-                    <p class="text-gray-600 text-sm mb-4">
-                        Exploring the relevance of courtyards in today’s urban residential design.
-                    </p>
-
-                </div>
-            </div>
-
-
-            <!-- Card 2 -->
-            <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden group">
-                <img src="/static/property/5.jpg" alt="Minimalist Home Architecture"
-                    class="w-full h-56 object-cover group-hover:scale-105 transition duration-500" />
-                <div class="p-6 text-left">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                        Minimalist Homes with Maximum Comfort
-                    </h3>
-                    <p class="text-gray-600 text-sm mb-4">
-                        Designing serene living spaces through simplicity, proportion, and natural light.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden group">
-                <img src="/static/property/6.jpg" alt="Contemporary Kerala Home"
-                    class="w-full h-56 object-cover group-hover:scale-105 transition duration-500" />
-                <div class="p-6 text-left">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                        Contemporary Kerala Homes
-                    </h3>
-                    <p class="text-gray-600 text-sm mb-4">
-                        Blending regional materials with modern design for climate-responsive living.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Card 4 -->
-            <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden group">
-                <img src="/static/property/7.jpg" alt="Luxury Villa Design"
-                    class="w-full h-56 object-cover group-hover:scale-105 transition duration-500" />
-                <div class="p-6 text-left">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                        Luxury Villas Rooted in Tradition
-                    </h3>
-                    <p class="text-gray-600 text-sm mb-4">
-                        How classical proportions and craftsmanship elevate modern luxury residences.
-                    </p>
-                </div>
-            </div>
-
+            {% endfor %}
         </div>
 
     </div>
